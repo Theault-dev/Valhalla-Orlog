@@ -1,0 +1,17 @@
+[
+{"nom":"Rajeunissement d'Idunn","effet":"Reconstitution de votre santé après la phase de résolution",
+"quand":"apres_resolution", "sur_qui":"joueur", "affecte":"jetons_santé",
+"couts":[{"cout":4,"valeur":2},{"cout":7,"valeur":4},{"cout":10,"valeur":6}]}
+,
+{"nom":"Frappe de Thor","effet":"Dégâts infligés à l'ennemi après la phase de résolution",
+"quand":"apres_resolution", "sur_qui":"adversaire", "affecte":"jetons_santé",
+"couts":[{"cout":4,"valeur":-2},{"cout":8,"valeur":-5},{"cout":12,"valeur":-8}]}
+,
+{"nom":"Sacrifice d'Odin", "effet":"Après la phase de résolution, sacrifice d’un nombre quelconque de vos jetons de santé. Gain de jetons de pouvoir par santé sacrifié",
+"quand":"apres_resolution", "sur_qui":"joueur", "affecte":"jetons_pouvoir", "sacrifice": "jetons_santé"
+"couts":[{"cout":6,"valeur":3},{"cout":8,"valeur":4},{"cout":10,"valeur":5}]}
+,
+{"nom":"Gage de Tyr", "effet":"Sacrifice d’un nombre quelconque de vos jetons de santé. Destruction de jetons de pouvoir de l’adversaire par jeton de santé sacrifié",
+"quand":"apres_resolution", "sur_qui":"adversaire", "affecte":"jetons_pouvoir", "sacrifice": "jetons_santé"
+"couts":[{"cout":4,"valeur":-2},{"cout":6,"valeur":-3},{"cout":8,"valeur":-4}]}
+]
