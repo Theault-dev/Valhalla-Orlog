@@ -1,4 +1,4 @@
 package com.game.network;
 
-public class GameServer {
+public class MainNetwork {
 }
