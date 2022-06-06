@@ -1,4 +1,4 @@
-package com.game.network;
+package com.game.network.log;
 
 import java.util.ResourceBundle;
 import java.util.function.Supplier;
