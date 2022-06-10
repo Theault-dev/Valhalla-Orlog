@@ -41,6 +41,11 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
+        </dependency><!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20220320</version>
         </dependency>
         <dependency> <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple/1.1.1 -->
 		    <groupId>com.googlecode.json-simple</groupId>
@@ -69,7 +74,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.game.orlog/com.game.orlog.HelloApplication</mainClass>
+                            <mainClass>com.game.orlog/com.game.orlog.ValhallaOrlogApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
