@@ -1,4 +1,4 @@
-package com.game.orlog.utils;
+package com.game.orlog.model.utils;
 
 public enum Color {
 	WHITE((short) 0xFF, (short) 0xFF, (short) 0xFF),

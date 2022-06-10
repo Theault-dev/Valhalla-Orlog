@@ -1,4 +1,4 @@
-package com.game.orlog.enumClass;
+package com.game.orlog.model.enumClass;
 
 public enum OnWhatEnum implements GeneralEnum {
 	NONE(""), AXE_DAMAGE("dégâts_hache"), BLOCKING("blocage"), AXE("haches"), POWER_TOKEN("jetons_pouvoir"),

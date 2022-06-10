@@ -1,8 +1,8 @@
-package com.game.orlog.items;
+package com.game.orlog.model.items;
 
 import java.util.ArrayList;
 
-import com.game.orlog.utils.Utils;
+import com.game.orlog.model.utils.Utils;
 
 public class Cup {
 	private ArrayList<Die> dices;

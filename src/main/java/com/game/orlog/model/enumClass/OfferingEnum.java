@@ -1,4 +1,4 @@
-package com.game.orlog.enumClass;
+package com.game.orlog.model.enumClass;
 
 public enum OfferingEnum implements GeneralEnum {
 	NONE(""), HEALTH_TOKEN("jetons_santé");

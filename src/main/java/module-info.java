@@ -7,7 +7,10 @@ module com.game.orlog {
 	requires json.simple;
 	requires org.json;
 
-    opens com.game.orlog to javafx.fxml;
     exports com.game.orlog;
-    exports com.game.orlog.enumClass;
+    exports com.game.orlog.model.enumClass;
+    exports com.game.orlog.controller;
+    
+    opens com.game.orlog to javafx.fxml;
+    opens com.game.orlog.controller to javafx.fxml;
 }

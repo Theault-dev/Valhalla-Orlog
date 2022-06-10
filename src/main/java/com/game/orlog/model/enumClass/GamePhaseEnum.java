@@ -1,7 +1,8 @@
-package com.game.orlog.enumClass;
+package com.game.orlog.model.enumClass;
 
 public enum GamePhaseEnum implements GeneralEnum {
-	IDLE(""), ROLL(""), DICES_SELECTION(""), DIVINE_FAVOR("faveur_divine"), FIGHT("avant_resolution"), RESOLVE(""),
+	IDLE(""), ROLL(""), DICES_SELECTION(""), FAVORS_SELECTION(""),
+	RESOLVE(""), FIGHT("avant_resolution"), DIVINE_FAVOR("faveur_divine"),
 	END_TURN("apres_resolution"), END_GAME("");
 
 	private String name;

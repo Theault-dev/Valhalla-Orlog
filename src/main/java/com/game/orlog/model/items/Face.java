@@ -1,6 +1,6 @@
-package com.game.orlog.items;
+package com.game.orlog.model.items;
 
-import com.game.orlog.enumClass.ActionEnum;
+import com.game.orlog.model.enumClass.ActionEnum;
 
 public class Face {
 	private boolean isSpecial;

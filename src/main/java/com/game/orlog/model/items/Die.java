@@ -1,4 +1,4 @@
-package com.game.orlog.items;
+package com.game.orlog.model.items;
 
 import java.util.Arrays;
 

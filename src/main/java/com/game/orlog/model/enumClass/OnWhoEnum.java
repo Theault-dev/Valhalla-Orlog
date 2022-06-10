@@ -1,4 +1,4 @@
-package com.game.orlog.enumClass;
+package com.game.orlog.model.enumClass;
 
 public enum OnWhoEnum implements GeneralEnum {
 	NONE(""), PLAYER("joueur"), OPPONENT("adversaire"), CHOOSE("au_choix");

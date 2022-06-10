@@ -1,4 +1,4 @@
-package com.game.orlog.enumClass;
+package com.game.orlog.model.enumClass;
 
 public enum AffectEnum implements GeneralEnum {
 	HEALTH_TOKEN_BADLY_WRITTEN("jetons_vie"), HEALTH_TOKEN("jetons_santé"), POWER_TOKEN("jetons_pouvoir"),

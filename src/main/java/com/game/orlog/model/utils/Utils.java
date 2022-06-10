@@ -1,4 +1,4 @@
-package com.game.orlog.utils;
+package com.game.orlog.model.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,15 +13,15 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.game.orlog.entity.Divinity;
-import com.game.orlog.enumClass.ActionEnum;
-import com.game.orlog.enumClass.AffectEnum;
-import com.game.orlog.enumClass.GamePhaseEnum;
-import com.game.orlog.enumClass.GeneralEnum;
-import com.game.orlog.enumClass.OfferingEnum;
-import com.game.orlog.enumClass.OnWhatEnum;
-import com.game.orlog.enumClass.OnWhoEnum;
-import com.game.orlog.items.Face;
+import com.game.orlog.model.entity.Divinity;
+import com.game.orlog.model.enumClass.ActionEnum;
+import com.game.orlog.model.enumClass.AffectEnum;
+import com.game.orlog.model.enumClass.GamePhaseEnum;
+import com.game.orlog.model.enumClass.GeneralEnum;
+import com.game.orlog.model.enumClass.OfferingEnum;
+import com.game.orlog.model.enumClass.OnWhatEnum;
+import com.game.orlog.model.enumClass.OnWhoEnum;
+import com.game.orlog.model.items.Face;
 
 public class Utils {
 	private static ArrayList<Divinity> ALL_DIVINITIES = null;

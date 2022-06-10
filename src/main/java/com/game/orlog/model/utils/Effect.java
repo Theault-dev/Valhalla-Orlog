@@ -1,13 +1,13 @@
-package com.game.orlog.utils;
+package com.game.orlog.model.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.game.orlog.enumClass.AffectEnum;
-import com.game.orlog.enumClass.GamePhaseEnum;
-import com.game.orlog.enumClass.OfferingEnum;
-import com.game.orlog.enumClass.OnWhatEnum;
-import com.game.orlog.enumClass.OnWhoEnum;
+import com.game.orlog.model.enumClass.AffectEnum;
+import com.game.orlog.model.enumClass.GamePhaseEnum;
+import com.game.orlog.model.enumClass.OfferingEnum;
+import com.game.orlog.model.enumClass.OnWhatEnum;
+import com.game.orlog.model.enumClass.OnWhoEnum;
 
 public class Effect {
 	private String name;

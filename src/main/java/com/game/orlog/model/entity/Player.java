@@ -1,9 +1,9 @@
-package com.game.orlog.entity;
+package com.game.orlog.model.entity;
 
 import java.util.ArrayList;
 
-import com.game.orlog.items.Cup;
-import com.game.orlog.items.Die;
+import com.game.orlog.model.items.Cup;
+import com.game.orlog.model.items.Die;
 
 public class Player {
 	private byte healthPoint;

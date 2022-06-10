@@ -1,9 +1,9 @@
-package com.game.orlog.entity;
+package com.game.orlog.model.entity;
 
 import java.util.ArrayList;
 
-import com.game.orlog.utils.Effect;
-import com.game.orlog.utils.Utils;
+import com.game.orlog.model.utils.Effect;
+import com.game.orlog.model.utils.Utils;
 
 public class Divinity {
 	private String name;
