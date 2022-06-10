@@ -4,99 +4,59 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.HashMap;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.game.orlog.entity.Divinity;
+import com.game.orlog.enumClass.ActionEnum;
+import com.game.orlog.enumClass.AffectEnum;
+import com.game.orlog.enumClass.GamePhaseEnum;
+import com.game.orlog.enumClass.GeneralEnum;
+import com.game.orlog.enumClass.OfferingEnum;
+import com.game.orlog.enumClass.OnWhatEnum;
+import com.game.orlog.enumClass.OnWhoEnum;
+import com.game.orlog.items.Face;
+
 public class Utils {
-	public interface GeneralEnum {
-		String getName();
-	}
-	public static enum When implements GeneralEnum {
-	    BEFORE("apres_resolution"),
-	    AFTER("avant_resolution"),
-	    DEPEND("faveur_divine");
-		private String name;
-		private When(String name) {
-			this.name = name;
+	private static ArrayList<Divinity> ALL_DIVINITIES = null;
+	
+	public static Face HAND = new Face(false, ActionEnum.HAND);
+	public static Face ARROW = new Face(false, ActionEnum.ARROW);
+	public static Face AXE = new Face(false, ActionEnum.AXE);
+	public static Face HELMET = new Face(false, ActionEnum.HELMET);
+	public static Face SHIELD = new Face(false, ActionEnum.SHIELD);
+	public static Face HAND_SPE = new Face(true, ActionEnum.HAND);
+	public static Face ARROW_SPE = new Face(true, ActionEnum.ARROW);
+	public static Face AXE_SPE = new Face(true, ActionEnum.AXE);
+	public static Face HELMET_SPE = new Face(true, ActionEnum.HELMET);
+	public static Face SHIELD_SPE = new Face(true, ActionEnum.SHIELD);
+	
+	public static ArrayList<Divinity> getAllDivinities(){
+		if (ALL_DIVINITIES == null) {
+			ALL_DIVINITIES = new ArrayList<Divinity>();
+			File file =
+				new File("src/main/resources/json/Orlog_invocation_all.json");
+			JSONArray array = Utils.readJSONFile(file);
+			
+			for (int i = 0; i < array.size(); i++) {
+				Effect effect = parseJSONArray((JSONObject) array.get(i));
+				String name = effect.getName().split("[\\s']")
+						[effect.getName().split("[\\s']").length-1];
+				
+				ALL_DIVINITIES.add(new Divinity(name , effect));
+			}
 		}
-		public String getName() {
-			return name;
-		}
-	};
-	public static enum OnWho implements GeneralEnum {
-		PLAYER("joueur"),
-		OPPONENT("adversaire"),
-		CHOOSE("au_choix");
-		private String name;
-		private OnWho(String name) {
-			this.name = name;
-		}
-		public String getName() {
-			return name;
-		}
-	}
-	public static enum Affect implements GeneralEnum {
-	    HEALTH_TOKEN("jetons_santé"),
-	    POWER_TOKEN("jetons_pouvoir"),
-	    HELMET("casques"),
-	    SHIELD("boucliers"),
-	    AXE("haches"),
-	    DIE("dés"),
-	    DIVINE_FAVOR("faveur_divine"),
-	    ARROW("flèches");
-		private String name;
-		private Affect(String name) {
-			this.name = name;
-		}
-		public String getName() {
-			return name;
-		}
-	};
-	public static enum Offering implements GeneralEnum {
-		NONE(""),
-		HEALTH_TOKEN("jetons_santé");
-		private String name;
-		private Offering(String name) {
-			this.name = name;
-		}
-		public String getName() {
-			return name;
-		}
-	}
-	public static enum MultiplierOnWho implements GeneralEnum {
-		NONE(""),
-		PLAYER("joueur"),
-		OPPONENT("adversaire");
-		private String name;
-		private MultiplierOnWho(String name) {
-			this.name = name;
-		}
-		public String getName() {
-			return name;
-		}
-	}
-	public static enum MultiplierOnWhat implements GeneralEnum {
-		NONE(""),
-		AXE_DAMAGE("dégâts_hache"),
-		BLOCKING("blocage"),
-		AXE("haches"),
-		POWER_TOKEN("jetons_pouvoir"),
-		ARROW("flèches"),
-		TAKEN_DAMAGE("dégâts_subis"),
-		HAND("main");
-		private String name;
-		private MultiplierOnWhat(String name) {
-			this.name = name;
-		}
-		public String getName() {
-			return name;
-		}
+		return ALL_DIVINITIES;
 	}
 	
 	/**
-	 * Read a JSONFile givin in parameter
+	 * Read a JSONFile given in parameter
 	 * @param file JSON file
 	 * @return JSONArray if correctly parsed, null otherwise
 	 */
@@ -115,4 +75,100 @@ public class Utils {
         }
 		return null;
 	}
+	/**
+	 * Parse a JSONArray into elements and return an Effect
+	 * @param element
+	 * @return an Instance of Effect
+	 * @see Effect
+	 */
+	@SuppressWarnings({ "unchecked" })
+	private static Effect parseJSONArray(JSONObject element) {
+		String tmp;
+		ArrayList<String> tmpArray;
+		JSONObject tmpObject;
+		ArrayList<JSONObject> tmpArrayObject;
+		
+		String name = (String) element.get("nom");
+		String description = (String) element.get("effet");
+		
+		GamePhaseEnum when = null;
+		tmp = (String) element.get("quand");
+		when = (GamePhaseEnum) forEachEnum(GamePhaseEnum.class, tmp);
+		
+		OnWhoEnum onWho = null;
+		tmp = (String) element.get("sur_qui");
+		onWho = (OnWhoEnum) forEachEnum(OnWhoEnum.class, tmp);
+		
+		ArrayList<AffectEnum> affects = new ArrayList<AffectEnum>();
+		try {
+			tmp = (String) element.get("affecte");
+			affects.add((AffectEnum) forEachEnum(AffectEnum.class, tmp));
+		} catch(ClassCastException e) {
+			tmpArray = (ArrayList<String>) element.get("affecte");
+			for(String str : tmpArray) {
+				affects.add((AffectEnum) forEachEnum(AffectEnum.class, str));
+			}
+		}
+		
+		OfferingEnum offering = null;
+		tmp = (String) element.get("sacrifice");
+		offering = (OfferingEnum) forEachEnum(OfferingEnum.class, tmp);
+		if(offering == null) {
+			offering = OfferingEnum.NONE;
+		}
+		
+		OnWhoEnum multiplierOnWho = null;
+		tmpObject = (JSONObject) element.get("multiplicateur");
+		try {
+			tmp = (String) tmpObject.get("qui");
+			multiplierOnWho =
+					(OnWhoEnum) forEachEnum(OnWhoEnum.class, tmp);
+		} catch (NullPointerException e) {
+			multiplierOnWho = OnWhoEnum.NONE;
+		}
+
+		OnWhatEnum multiplierOnWhat = null;
+		try {
+			tmp = (String) tmpObject.get("quoi");
+			multiplierOnWhat =
+					(OnWhatEnum) forEachEnum(OnWhatEnum.class, tmp);
+		} catch (NullPointerException e) {
+			multiplierOnWhat = OnWhatEnum.NONE;
+		}
+		
+		HashMap<Byte, Float> costs = new HashMap<>();
+		tmpArrayObject = (JSONArray) element.get("couts");
+		for(JSONObject obj : tmpArrayObject) {
+			byte cost = ((Long)obj.values().toArray()[1]).byteValue();
+			float value;
+			try {
+				value = ((Long)obj.values().toArray()[0]).floatValue();
+			} catch (ClassCastException e) {
+				value = ((Double)obj.values().toArray()[0]).floatValue();
+			}
+			costs.put(cost, value);
+		}
+		
+		return new Effect(name, description, when, onWho, affects,
+				offering, multiplierOnWho, multiplierOnWhat, costs);
+	}
+	/**
+	 * Compare all elements of a given enum class with the given String
+	 * @param c Name of the enum Class
+	 * @param comparingTo Name of the enum element
+	 * @return Element of the enum
+	 */
+	@SuppressWarnings("unchecked")
+	private static GeneralEnum forEachEnum(@SuppressWarnings("rawtypes") Class c,
+			String comparingTo) {
+		if (c.isEnum()) {
+			for(Object element : EnumSet.allOf(c)) {
+				if (((GeneralEnum)element).getName().equals(comparingTo)) {
+					return (GeneralEnum) element;
+				}
+			}
+		}
+		return null;
+	}
+
 }

@@ -42,7 +42,7 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <dependency> <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple/1.1.1 -->
 		    <groupId>com.googlecode.json-simple</groupId>
 		    <artifactId>json-simple</artifactId>
 		    <version>1.1.1</version>
