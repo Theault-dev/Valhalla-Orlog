@@ -8,7 +8,7 @@ public class NoMoreDieToRollException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	public NoMoreDieToRollException() {
-		super("No more dices to roll");
+		super("No more dice to roll");
 	}
 
 	public NoMoreDieToRollException(String message) {

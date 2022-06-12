@@ -1,4 +1,4 @@
-package com.game.orlog.model.utils;
+package com.game.orlog.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.game.orlog.model.Effect;
 import com.game.orlog.model.entity.Divinity;
 import com.game.orlog.model.enumClass.ActionEnum;
 import com.game.orlog.model.enumClass.AffectEnum;
@@ -23,6 +24,12 @@ import com.game.orlog.model.enumClass.OnWhatEnum;
 import com.game.orlog.model.enumClass.OnWhoEnum;
 import com.game.orlog.model.items.Face;
 
+/**
+ * A static util class with different usefull methods and variables
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public class Utils {
 	private static ArrayList<Divinity> ALL_DIVINITIES = null;
 	
@@ -37,6 +44,10 @@ public class Utils {
 	public static Face HELMET_SPE = new Face(true, ActionEnum.HELMET);
 	public static Face SHIELD_SPE = new Face(true, ActionEnum.SHIELD);
 	
+	/**
+	 * Load once and return the divinities from a hardcoded JSON path.
+	 * @return All the divinites from within a JSON file
+	 */
 	public static ArrayList<Divinity> getAllDivinities(){
 		if (ALL_DIVINITIES == null) {
 			ALL_DIVINITIES = new ArrayList<Divinity>();
@@ -54,7 +65,6 @@ public class Utils {
 		}
 		return ALL_DIVINITIES;
 	}
-	
 	/**
 	 * Read a JSONFile given in parameter
 	 * @param file JSON file

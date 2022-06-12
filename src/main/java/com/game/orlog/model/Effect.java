@@ -1,4 +1,4 @@
-package com.game.orlog.model.utils;
+package com.game.orlog.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -24,17 +24,17 @@ public class Player {
 		gold = 0;
 	}
 	
-	public ArrayList<Die> getDices() {
-		return cup.getDices();
+	public ArrayList<Die> getDice() {
+		return cup.getDice();
 	}
-	public void setDices(ArrayList<Die> newDices) {
-		cup.setDices(newDices);
+	public void setDice(ArrayList<Die> newDice) {
+		cup.setDice(newDice);
 	}
-	public ArrayList<Die> getDicesToKeep() {
-		return cup.getDicesToKeep();
+	public ArrayList<Die> getDiceToKeep() {
+		return cup.getDiceToKeep();
 	}
-	public void setDicesToKeep(ArrayList<Die> dicesToKeep) {
-		cup.setDicesToKeep(dicesToKeep);
+	public void setDiceToKeep(ArrayList<Die> DiceToKeep) {
+		cup.setDiceToKeep(DiceToKeep);
 	}
 	public final byte getHealthPoint() {
 		return healthPoint;
