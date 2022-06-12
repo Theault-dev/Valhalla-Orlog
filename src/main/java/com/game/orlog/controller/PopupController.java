@@ -6,13 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 
 /**
- * Super controller for the popup window.
- * Must be inherited by a popup class.
+ * Super controller for a popup window.
+ * Can be inherited by a popup class.
  * 
  * @author Theault & Titouan
  *
  */
-public abstract class PopupController {
+public class PopupController {
 	@FXML
 	protected Parent view;
 

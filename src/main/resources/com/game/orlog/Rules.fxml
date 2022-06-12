@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -9,14 +11,21 @@
 	minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0"
 	prefWidth="260.0" xmlns="http://javafx.com/javafx/8"
 	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="com.game.orlog.controller.SettingsController">
+	fx:controller="com.game.orlog.controller.PopupController">
 	<children>
-		<ScrollPane fx:id="view" maxHeight="-Infinity"
+		<ScrollPane fitToWidth="true" maxHeight="-Infinity"
 			maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
 			prefHeight="230.0" prefWidth="250.0">
 			<content>
-				<Text fx:id="textRules" strokeType="OUTSIDE" strokeWidth="0.0"
-					text="Text" textAlignment="JUSTIFY" />
+				<TextFlow fx:id="view" prefHeight="220.0" prefWidth="240.0"
+					textAlignment="JUSTIFY">
+					<children>
+						<Text fx:id="textRules" text="text" wrappingWidth="250.0" />
+					</children>
+					<padding>
+						<Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+					</padding>
+				</TextFlow>
 			</content>
 		</ScrollPane>
 	</children>

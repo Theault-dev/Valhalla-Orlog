@@ -8,6 +8,7 @@ import com.game.orlog.ValhallaOrlogApplication;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Labeled;
+import javafx.scene.text.Text;
 
 /**
  * Localisation class with all the static features that a good
@@ -122,13 +123,18 @@ public class LocalisationSystem {
 	public static void changeViewLanguage(Parent root) {
 		ArrayList<Node> nodes = new ArrayList<>();		
 		addAllDescendents(root, nodes);
-		
+
 		for (Node node : nodes) {
-			if (node.getId() == null || !(node instanceof Labeled)) {
+			if (node.getId() == null) {
 				continue;
 			}
-			((Labeled) node).setText(LocalisationSystem
-					.getLocalisedValue(node.getId()));
+			if (node instanceof Labeled) {
+				((Labeled) node).setText(LocalisationSystem
+						.getLocalisedValue(node.getId()));
+			} else if (node instanceof Text) {
+				((Text) node).setText(LocalisationSystem
+						.getLocalisedValue(node.getId()));
+			}
 		}
 	}
 }
