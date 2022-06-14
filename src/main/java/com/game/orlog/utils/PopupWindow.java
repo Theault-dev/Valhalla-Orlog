@@ -8,7 +8,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Popup;
-import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 /**
@@ -52,15 +51,20 @@ public class PopupWindow {
 	 * @param stage The stage from the application.
 	 */
 	public static void showPopupMessage(final String FXMLFile
-			, final Stage stage) {
+			, final Parent root) {
 		final Popup popup = createPopup(FXMLFile);
 		popup.setOnShown(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent e) {
-				popup.setX(stage.getX() + stage.getWidth()/2 - popup.getWidth()/2);
-				popup.setY(stage.getY() + stage.getHeight()/2 - popup.getHeight()/2);
+				popup.setX(ValhallaOrlogApplication.getStage().getX()
+						+ ValhallaOrlogApplication.getStage().getWidth()/2
+						- popup.getWidth()/2);
+				popup.setY(ValhallaOrlogApplication.getStage().getY(
+						) + ValhallaOrlogApplication.getStage().getHeight()/2
+						- popup.getHeight()/2);
 			}
-		});        
-		popup.show(stage);
+		});
+		popup.show(ValhallaOrlogApplication.getStage());
+		System.out.println(popup.getWidth());
 	}
 }

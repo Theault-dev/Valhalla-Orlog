@@ -8,7 +8,6 @@ public class Board {
 	private boolean isP1Turn;
 	
 	public Board(Player p1, Player p2) {
-		super();
 		this.p1 = p1;
 		this.p2 = p2;
 	}

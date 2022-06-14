@@ -1,12 +1,9 @@
 package com.game.orlog.controller;
 
-import com.game.orlog.ValhallaOrlogApplication;
 import com.game.orlog.utils.LocalisationSystem;
-import com.game.orlog.utils.PopupWindow;
 import com.game.orlog.utils.LocalisationSystem.Language;
 
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 
 public class SettingsController extends PopupController{

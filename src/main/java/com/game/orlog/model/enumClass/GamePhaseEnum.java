@@ -19,4 +19,7 @@ public enum GamePhaseEnum implements GeneralEnum {
 	public GamePhaseEnum next() {
 		return GamePhaseEnum.values()[(this.ordinal() + 1) % (GamePhaseEnum.values().length-1)];
 	}
+	public GamePhaseEnum previous() {
+		return GamePhaseEnum.values()[(this.ordinal() - 1) % (GamePhaseEnum.values().length-1)];
+	}
 }

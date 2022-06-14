@@ -103,7 +103,7 @@ public class LocalisationSystem {
 	 */
 	public static void changeUILanguage() {
 		ArrayList<Node> nodes = new ArrayList<>();
-		Parent root = ValhallaOrlogApplication.getStage().getScene().rootProperty().get();
+		Parent root = ValhallaOrlogApplication.getRoot();
 		
 		addAllDescendents(root, nodes);
 		

@@ -32,6 +32,8 @@ import com.game.orlog.model.items.Face;
  */
 public class Utils {
 	private static ArrayList<Divinity> ALL_DIVINITIES = null;
+	private static String path = "src/main/resources"
+			+ "/com/game/orlog/json/Orlog_invocation_all.json";
 	
 	public static Face HAND = new Face(false, ActionEnum.HAND);
 	public static Face ARROW = new Face(false, ActionEnum.ARROW);
@@ -52,7 +54,7 @@ public class Utils {
 		if (ALL_DIVINITIES == null) {
 			ALL_DIVINITIES = new ArrayList<Divinity>();
 			File file =
-				new File("src/main/resources/json/Orlog_invocation_all.json");
+				new File(path);
 			JSONArray array = Utils.readJSONFile(file);
 			
 			for (int i = 0; i < array.size(); i++) {

@@ -2,25 +2,24 @@ package com.game.orlog.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.game.orlog.ValhallaOrlogApplication;
+import com.game.orlog.model.entity.Player;
+import com.game.orlog.utils.CSVLoader;
 import com.game.orlog.utils.LocalisationSystem;
 import com.game.orlog.utils.PopupWindow;
-import com.game.orlog.utils.LocalisationSystem.Language;
-
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Labeled;
 import javafx.scene.layout.GridPane;
-import javafx.util.Duration;
 
 public class ValhallaOrlogController {
+	private Scene scene;
+	
 	static ArrayList<Node> nodes = new ArrayList<Node>();
 	@FXML
 	private Button settings;
@@ -28,8 +27,8 @@ public class ValhallaOrlogController {
 	private Button rulesButton;
 	@FXML
 	private GridPane view;
-	@FXML
-	private HomePageController viewController;
+	
+	private GameplayController gameplayController;
 
 	@FXML
 	public void initialize() throws IOException {
@@ -45,7 +44,7 @@ public class ValhallaOrlogController {
 				if (node.getId().equals("newGame")) {
 					((Button) node).setOnAction(event -> {
 						try {
-							loadNewGame(event);
+							startNewGame(event);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -53,16 +52,6 @@ public class ValhallaOrlogController {
 				} else if (node.getId().equals("loadGame")) {
 					((Button) node).setOnAction(event -> {
 						System.out.println("load game");
-						switch (LocalisationSystem.language) {
-						case ENGLISH:
-							LocalisationSystem.language = Language.FRENCH;
-							break;
-						case FRENCH:
-						default:
-							LocalisationSystem.language = Language.ENGLISH;
-							break;
-						}
-						LocalisationSystem.changeUILanguage();
 						//TODO
 					});
 				} else if (node.getId().equals("quit")) {
@@ -74,30 +63,32 @@ public class ValhallaOrlogController {
 		};
 
 		settings.setOnMousePressed(event -> {
-			PopupWindow.showPopupMessage("Settings.fxml", ValhallaOrlogApplication.getStage());
+			PopupWindow.showPopupMessage("Settings.fxml", ValhallaOrlogApplication.getRoot());
 		});
 		
 		rulesButton.setOnMousePressed(event -> {
-			PopupWindow.showPopupMessage("Rules.fxml", ValhallaOrlogApplication.getStage());
+			PopupWindow.showPopupMessage("Rules.fxml", ValhallaOrlogApplication.getRoot());
 		});
 	}
 
-	public void loadNewGame(ActionEvent event) throws IOException {
-		GridPane newView = FXMLLoader.load(ValhallaOrlogApplication.class.getResource("GameBoard.fxml"));
-		view.getColumnConstraints().clear();
-		view.getRowConstraints().clear();
-		view.getChildren().setAll(newView);
+	public void startNewGame(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(ValhallaOrlogApplication.class.getResource("GameBoard.fxml"));
+		//TODO
+		view = loader.load();
+		scene = ValhallaOrlogApplication.getStage().getScene();
+		//replace the included view by the new view
+		((GridPane)scene.getRoot()).getChildren().set(0, view);
+		ValhallaOrlogApplication.getStage().setScene(scene);
+		scene.getRoot().getStylesheets().add(
+				CSVLoader.class
+				.getResource("/com/game/orlog/css/styles.css")
+				.toExternalForm());
 
-		nodes = new ArrayList<Node>();
-		LocalisationSystem.addAllDescendents(view, nodes);
-		for (Node node : nodes) {
-			if (node.getId() != null) {
-				node.setOnMousePressed(e -> {
-					System.out.println(node.getId());
-				});
-//				System.out.print(node.getId() + "\t");
-//				System.out.println(node.localToScreen(node.getBoundsInLocal()));
-			}
-		};
+		//load the controller. Must be done AFTER the setScene
+		//TODO instanciate players
+		Player me = new Player("SAINT Bernard de La Villardière", null);
+		Player opponent = new Player("Titouan le gueu des prairies", null);
+		gameplayController = new GameplayController(me, opponent, view);
+		loader.setController(gameplayController);
 	}
 }

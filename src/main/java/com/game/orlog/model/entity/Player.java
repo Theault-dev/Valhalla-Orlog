@@ -6,6 +6,7 @@ import com.game.orlog.model.items.Cup;
 import com.game.orlog.model.items.Die;
 
 public class Player {
+	private String name;
 	private byte healthPoint;
 	private ArrayList<Divinity> divinities;
 	private Cup cup;
@@ -15,8 +16,9 @@ public class Player {
 	public static byte MAX_HEALTH_POINT = 15;
 	public static byte MAX_ROLLS = 3;
 	
-	public Player(ArrayList<Divinity> divinities) {
+	public Player(String name, ArrayList<Divinity> divinities) {
 		super();
+		this.name = name;
 		this.divinities = divinities;
 		healthPoint = MAX_HEALTH_POINT;
 		cup = new Cup();
@@ -24,6 +26,9 @@ public class Player {
 		gold = 0;
 	}
 	
+	public String getName() {
+		return name;
+	}
 	public ArrayList<Die> getDice() {
 		return cup.getDice();
 	}
