@@ -21,6 +21,9 @@ public class Cup {
 	public Cup() {
 		dice = new ArrayList<Die>();
 		diceToKeep = new ArrayList<Die>();
+		for (int i = 0; i < numberOfdice; i++) {
+			diceToKeep.add(null);
+		}
 
 		dice.add(new Die(
 				new Face[] { Utils.HAND_SPE, Utils.HELMET, Utils.ARROW_SPE, Utils.SHIELD, Utils.AXE, Utils.AXE }));

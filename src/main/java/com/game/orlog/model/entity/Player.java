@@ -22,8 +22,15 @@ public class Player {
 		this.divinities = divinities;
 		healthPoint = MAX_HEALTH_POINT;
 		cup = new Cup();
-		remainingRolls = MAX_ROLLS;
+		remainingRolls = 0;
 		gold = 0;
+	}
+	public void rollDice() {
+		for (Die die : getDice()) {
+			if (die != null) {
+				die.roll();
+			}
+		}
 	}
 	
 	public String getName() {

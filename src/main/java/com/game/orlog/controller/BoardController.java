@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Stack;
 
 import javax.imageio.ImageIO;
 
@@ -26,6 +27,7 @@ import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Labeled;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -48,6 +50,8 @@ public class BoardController {
 	private ImageView coinFlip;
 	private ImageView token_top_player;
 	private ImageView token_bottom_player;
+	
+	private Button validateSelectionButton;
 
 	public BoardController(Player me, Player opponent, GridPane view) {
 		this.me = me;
@@ -78,8 +82,10 @@ public class BoardController {
 			} else if (node.getId().contains("die")) {
 				if (node.getId().contains("bottom")) {
 					mapDice.put((BorderPane) node, false);
-					setImageOnDie(me, node,
-							me.getDice().get(node.getId().charAt(3)-48));
+					//TODO delete
+					setImageOnDie(me,
+							me.getDice().get(node.getId().charAt(3)-48),
+							(byte) (node.getId().charAt(3)-48));
 				}
 			} else if (node.getId().contains("name")) {
 				if (node.getId().contains("bottom")) {
@@ -87,22 +93,36 @@ public class BoardController {
 				} else {
 					((Labeled) node).setText(opponent.getName());
 				}
+			} else if (node.getId().equals("validateSelectionButton")) {
+				validateSelectionButton = (Button) node;
 			} else {
 				//				System.out.print(node.getId() + "\t");
 				//				System.out.println(node.localToScreen(node.getBoundsInLocal()));
 			}
 		};
 	}
+	
+	public Map<BorderPane, Boolean> getMapDice() {
+		return mapDice;
+	}
+	public Button getValidateSelectionButton() {
+		return validateSelectionButton;
+	}
 
-	private void setImageOnDie(Player player, Node node, Die die) {
-		String path = "img/common/" + die.getVisibleFace().getFace().name()
-				.toLowerCase();
-		if (die.getVisibleFace().getIsSpecial()) {
-			path = path.concat("Spe");
+	public void setImageOnDie(Player player, Die die, byte dieNumber) {
+		for (Node node : mapDice.keySet()) {
+			if (node.getId().charAt(3)-48 == dieNumber) {
+				String path = "img/common/" + die.getVisibleFace().getFace().name()
+						.toLowerCase();
+				if (die.getVisibleFace().getIsSpecial()) {
+					path = path.concat("Spe");
+				}
+				path = path.concat(".jpg");
+				URL url = ValhallaOrlogApplication.class.getResource(path);
+				((ImageView)((BorderPane) node).getCenter()).setImage(new Image(url.toExternalForm()));
+				break;
+			}
 		}
-		path = path.concat(".jpg");
-		URL url = ValhallaOrlogApplication.class.getResource(path);
-		((ImageView)((BorderPane) node).getCenter()).setImage(new Image(url.toExternalForm()));
 	}
 
 	public void onDieClick(Node nodeClicked) {
