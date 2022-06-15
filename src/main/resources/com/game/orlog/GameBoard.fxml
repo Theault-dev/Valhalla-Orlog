@@ -178,7 +178,7 @@
 					<children>
 						<BorderPane fx:id="god0_bottom_player"
 							prefHeight="50.0" prefWidth="32.0">
-							<top>
+							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0"
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
@@ -186,11 +186,11 @@
 										<Image url="@img/gods/color/vidar.jpg" />
 									</image>
 								</ImageView>
-							</top>
+							</center>
 						</BorderPane>
 						<BorderPane fx:id="god1_bottom_player"
 							prefHeight="50.0" prefWidth="35.0">
-							<top>
+							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0"
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
@@ -198,11 +198,11 @@
 										<Image url="@img/gods/color/vidar.jpg" />
 									</image>
 								</ImageView>
-							</top>
+							</center>
 						</BorderPane>
 						<BorderPane fx:id="god2_bottom_player"
 							prefHeight="50.0" prefWidth="45.0">
-							<top>
+							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0"
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
@@ -210,11 +210,11 @@
 										<Image url="@img/gods/color/vidar.jpg" />
 									</image>
 								</ImageView>
-							</top>
+							</center>
 						</BorderPane>
 						<BorderPane fx:id="die0_bottom_player"
 							prefHeight="200.0" prefWidth="200.0">
-							<top>
+							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0"
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
@@ -222,11 +222,11 @@
 										<Image url="@img/common/vide.jpg" />
 									</image>
 								</ImageView>
-							</top>
+							</center>
 						</BorderPane>
 						<BorderPane fx:id="die1_bottom_player"
 							prefHeight="200.0" prefWidth="200.0">
-							<top>
+							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0"
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
@@ -234,11 +234,11 @@
 										<Image url="@img/common/vide.jpg" />
 									</image>
 								</ImageView>
-							</top>
+							</center>
 						</BorderPane>
 						<BorderPane fx:id="die2_bottom_player"
 							prefHeight="200.0" prefWidth="200.0">
-							<top>
+							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0"
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
@@ -246,11 +246,11 @@
 										<Image url="@img/common/vide.jpg" />
 									</image>
 								</ImageView>
-							</top>
+							</center>
 						</BorderPane>
 						<BorderPane fx:id="die3_bottom_player"
 							prefHeight="200.0" prefWidth="200.0">
-							<top>
+							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0"
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
@@ -258,11 +258,11 @@
 										<Image url="@img/common/vide.jpg" />
 									</image>
 								</ImageView>
-							</top>
+							</center>
 						</BorderPane>
 						<BorderPane fx:id="die4_bottom_player"
 							prefHeight="200.0" prefWidth="200.0">
-							<top>
+							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0"
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
@@ -270,11 +270,11 @@
 										<Image url="@img/common/vide.jpg" />
 									</image>
 								</ImageView>
-							</top>
+							</center>
 						</BorderPane>
 						<BorderPane fx:id="die5_bottom_player"
 							prefHeight="200.0" prefWidth="200.0">
-							<top>
+							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0"
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
@@ -282,7 +282,7 @@
 										<Image url="@img/common/vide.jpg" />
 									</image>
 								</ImageView>
-							</top>
+							</center>
 						</BorderPane>
 					</children>
 				</HBox>

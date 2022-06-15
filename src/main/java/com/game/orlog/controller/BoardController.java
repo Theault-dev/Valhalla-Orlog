@@ -1,12 +1,19 @@
 package com.game.orlog.controller;
 
+import java.io.FileInputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
+
 import com.game.orlog.ValhallaOrlogApplication;
 import com.game.orlog.model.Board;
 import com.game.orlog.model.entity.Player;
+import com.game.orlog.model.items.Die;
+import com.game.orlog.model.items.Face;
 import com.game.orlog.utils.LocalisationSystem;
 
 import javafx.animation.Interpolator;
@@ -20,6 +27,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Labeled;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -70,6 +78,7 @@ public class BoardController {
 			} else if (node.getId().contains("die")) {
 				if (node.getId().contains("bottom")) {
 					mapDice.put((BorderPane) node, false);
+					System.out.println(me.getDice().get(node.getId().charAt(3)-48).getVisibleFace());
 				}
 			} else if (node.getId().contains("name")) {
 				if (node.getId().contains("bottom")) {
@@ -82,6 +91,12 @@ public class BoardController {
 //				System.out.println(node.localToScreen(node.getBoundsInLocal()));
 			}
 		};
+	}
+	
+	private void setImageOnDie(Player player, Node node, Die die) {
+		Face face = player.getDice().get(node.getId().charAt(3)-48).getVisibleFace();
+		URL url = ValhallaOrlogApplication.class.getResource("img/common/bouclier_ok.jpg");
+		((ImageView)((BorderPane) node).getCenter()).setImage(new Image(url.toExternalForm()));
 	}
 	
 	public void onDieClick(Node nodeClicked) {
