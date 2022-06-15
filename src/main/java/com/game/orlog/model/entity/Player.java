@@ -56,6 +56,9 @@ public class Player {
 	public final byte getHealthPoint() {
 		return healthPoint;
 	}
+	public final void setHealthPoint(byte healthPoint) {
+		this.healthPoint = healthPoint;
+	}
 	public final ArrayList<Divinity> getDivinities() {
 		return divinities;
 	}
@@ -67,6 +70,9 @@ public class Player {
 	}
 	public void incrementRemainingThrows() {
 		remainingRolls++;
+	}
+	public void resetRemainingThrows() {
+		remainingRolls = 0;
 	}
 	public final byte getGold() {
 		return gold;

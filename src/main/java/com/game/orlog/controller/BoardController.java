@@ -1,31 +1,22 @@
 package com.game.orlog.controller;
 
-import java.io.FileInputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.Stack;
-
-import javax.imageio.ImageIO;
-
 import com.game.orlog.ValhallaOrlogApplication;
 import com.game.orlog.model.Board;
 import com.game.orlog.model.entity.Player;
 import com.game.orlog.model.items.Die;
-import com.game.orlog.model.items.Face;
 import com.game.orlog.utils.LocalisationSystem;
 
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Labeled;
@@ -39,8 +30,8 @@ import javafx.util.Duration;
 public class BoardController {
 	private Board board;
 
-	private Player me;
-	private Player opponent;
+	private Player bottomPlayer;
+	private Player topPlayer;
 	private Map<BorderPane, Boolean> mapDice;
 
 	private Player currentTurnSPlayer;
@@ -50,15 +41,17 @@ public class BoardController {
 	private ImageView coinFlip;
 	private ImageView token_top_player;
 	private ImageView token_bottom_player;
+	private BorderPane healthTopPlayer;
+	private BorderPane healthBottomPlayer;
 	
 	private Button validateSelectionButton;
 
-	public BoardController(Player me, Player opponent, GridPane view) {
-		this.me = me;
-		this.opponent = opponent;
+	public BoardController(Player bottomPlayer, Player topPlayer, GridPane view) {
+		this.bottomPlayer = bottomPlayer;
+		this.topPlayer = topPlayer;
 		mapDice = new HashMap<BorderPane, Boolean>();
 
-		board = new Board(opponent, me);
+		board = new Board(topPlayer, bottomPlayer);
 
 		populateNode();
 
@@ -83,23 +76,43 @@ public class BoardController {
 				if (node.getId().contains("bottom")) {
 					mapDice.put((BorderPane) node, false);
 					//TODO delete
-					setImageOnDie(me,
-							me.getDice().get(node.getId().charAt(3)-48),
+					setImageOnDie(bottomPlayer,
+							bottomPlayer.getDice().get(node.getId().charAt(3)-48),
 							(byte) (node.getId().charAt(3)-48));
 				}
 			} else if (node.getId().contains("name")) {
 				if (node.getId().contains("bottom")) {
-					((Labeled) node).setText(me.getName());
+					((Labeled) node).setText(bottomPlayer.getName());
 				} else {
-					((Labeled) node).setText(opponent.getName());
+					((Labeled) node).setText(topPlayer.getName());
 				}
 			} else if (node.getId().equals("validateSelectionButton")) {
 				validateSelectionButton = (Button) node;
+			} else if (node.getId().equals("healthTopPlayer")) {
+				healthTopPlayer = (BorderPane) node;
+			} else if (node.getId().equals("healthBottomPlayer")) {
+				healthBottomPlayer = (BorderPane) node;
 			} else {
 				//				System.out.print(node.getId() + "\t");
 				//				System.out.println(node.localToScreen(node.getBoundsInLocal()));
 			}
 		};
+	}
+	
+	/**
+	 * Set The image for the health of a player.
+	 * 
+	 * @param player The player which needs to have the health's images changed.
+	 * @param healthPoint the new number of health point.
+	 */
+	public void setLifeImageForPlayer(Player player, byte healthPoint) {
+		String path = "img/lifePoints/" + healthPoint + ".png";
+		URL url = ValhallaOrlogApplication.class.getResource(path);
+		if (player.equals(topPlayer)) {
+			((ImageView) healthTopPlayer.getCenter()).setImage(new Image(url.toExternalForm()));
+		} else {
+			((ImageView) healthBottomPlayer.getCenter()).setImage(new Image(url.toExternalForm()));
+		}
 	}
 	
 	public Map<BorderPane, Boolean> getMapDice() {
@@ -109,6 +122,13 @@ public class BoardController {
 		return validateSelectionButton;
 	}
 
+	/**
+	 * Set The image for the dice of a player.
+	 * 
+	 * @param player The player which needs to have the die's images changed
+	 * @param die The die that need to be changed.
+	 * @param dieNumber The index of the die in the list.
+	 */
 	public void setImageOnDie(Player player, Die die, byte dieNumber) {
 		for (Node node : mapDice.keySet()) {
 			if (node.getId().charAt(3)-48 == dieNumber) {
@@ -244,7 +264,7 @@ public class BoardController {
 		double x = 0;
 		double y = 0;
 
-		if (currentTurnSPlayer.equals(me)) {
+		if (currentTurnSPlayer.equals(bottomPlayer)) {
 			x = token_bottom_player.localToScene(token_bottom_player.getBoundsInLocal()).getCenterX()
 					- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterX();
 			y = token_bottom_player.localToScene(token_bottom_player.getBoundsInLocal()).getCenterY()
@@ -266,9 +286,4 @@ public class BoardController {
 	public void update() {
 		//TODO
 	}
-
-	public void onDieClicked(ActionEvent e) {
-		//TODO
-	}
-
 }

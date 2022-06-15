@@ -59,6 +59,24 @@
 				<RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
+            <BorderPane fx:id="healthTopPlayer" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <center>
+      				<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      					<image>
+      						<Image url="@img/lifePoints/15.png" />
+      					</image>
+      				</ImageView>
+               </center>
+            </BorderPane>
+            <BorderPane fx:id="healthBottomPlayer" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <center>
+      				<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      					<image>
+      						<Image url="@img/lifePoints/15.png" />
+      					</image>
+      				</ImageView>
+               </center>
+            </BorderPane>
 				<HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
 					<children>
 						<Label fx:id="name_bottom_player" text="[Player name]">
@@ -68,16 +86,6 @@
 						</Label>
 					</children>
 				</HBox>
-				<ImageView fx:id="health_bottom_player" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
-					<image>
-						<Image url="@img/lifePoints/15graine.png" />
-					</image>
-				</ImageView>
-				<ImageView fx:id="health_top_player" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
-					<image>
-						<Image url="@img/lifePoints/15graine.png" />
-					</image>
-				</ImageView>
 				<HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2147483647">
 					<children>
 						<Label fx:id="name_top_player" alignment="CENTER_RIGHT" text="[Player name]" />
