@@ -36,32 +36,32 @@ import javafx.util.Duration;
 
 public class BoardController {
 	private Board board;
-	
+
 	private Player me;
 	private Player opponent;
 	private Map<BorderPane, Boolean> mapDice;
-	
+
 	private Player currentTurnSPlayer;
-	
+
 	private ArrayList<Node> elementsWithId;
-	
+
 	private ImageView coinFlip;
 	private ImageView token_top_player;
 	private ImageView token_bottom_player;
-	
+
 	public BoardController(Player me, Player opponent, GridPane view) {
 		this.me = me;
 		this.opponent = opponent;
 		mapDice = new HashMap<BorderPane, Boolean>();
-		
+
 		board = new Board(opponent, me);
-		
+
 		populateNode();
-		
+
 		token_top_player.setVisible(false);
 		token_bottom_player.setVisible(false);
 	}
-	
+
 	private void populateNode() {
 		elementsWithId = new ArrayList<>();
 		LocalisationSystem.addAllDescendents(ValhallaOrlogApplication.getRoot(), elementsWithId);
@@ -78,7 +78,8 @@ public class BoardController {
 			} else if (node.getId().contains("die")) {
 				if (node.getId().contains("bottom")) {
 					mapDice.put((BorderPane) node, false);
-					System.out.println(me.getDice().get(node.getId().charAt(3)-48).getVisibleFace());
+					setImageOnDie(me, node,
+							me.getDice().get(node.getId().charAt(3)-48));
 				}
 			} else if (node.getId().contains("name")) {
 				if (node.getId().contains("bottom")) {
@@ -87,18 +88,23 @@ public class BoardController {
 					((Labeled) node).setText(opponent.getName());
 				}
 			} else {
-//				System.out.print(node.getId() + "\t");
-//				System.out.println(node.localToScreen(node.getBoundsInLocal()));
+				//				System.out.print(node.getId() + "\t");
+				//				System.out.println(node.localToScreen(node.getBoundsInLocal()));
 			}
 		};
 	}
-	
+
 	private void setImageOnDie(Player player, Node node, Die die) {
-		Face face = player.getDice().get(node.getId().charAt(3)-48).getVisibleFace();
-		URL url = ValhallaOrlogApplication.class.getResource("img/common/bouclier_ok.jpg");
+		String path = "img/common/" + die.getVisibleFace().getFace().name()
+				.toLowerCase();
+		if (die.getVisibleFace().getIsSpecial()) {
+			path = path.concat("Spe");
+		}
+		path = path.concat(".jpg");
+		URL url = ValhallaOrlogApplication.class.getResource(path);
 		((ImageView)((BorderPane) node).getCenter()).setImage(new Image(url.toExternalForm()));
 	}
-	
+
 	public void onDieClick(Node nodeClicked) {
 		for (Node node : mapDice.keySet()) {
 			if (!nodeClicked.equals(node)) {
@@ -109,7 +115,7 @@ public class BoardController {
 			node.pseudoClassStateChanged(imageViewBorder, mapDice.get(node));
 		}
 	}
-	
+
 	public void resetHighlitedDice() {
 		for (BorderPane node : mapDice.keySet()) {
 			PseudoClass imageViewBorder = PseudoClass.getPseudoClass("border");
@@ -127,66 +133,66 @@ public class BoardController {
 		TranslateTransition translateCoin = new TranslateTransition();
 		ScaleTransition scaleCoin = new ScaleTransition();
 		boolean isTopPlayerSelected = new Random().nextBoolean();
-    	if (isTopPlayerSelected) {
-    		currentTurnSPlayer = board.getP1();
-    	} else {
-    		currentTurnSPlayer = board.getP2();
-    	}
-		
+		if (isTopPlayerSelected) {
+			currentTurnSPlayer = board.getP1();
+		} else {
+			currentTurnSPlayer = board.getP2();
+		}
+
 		rotator.play();
-			
+
 		Thread th = new Thread(new Runnable() {
-            @Override
-            public void run() {
-		        try {
-		        	double x = 0;
-		        	double y = 0;
-		        	if (isTopPlayerSelected) {
-		        		Thread.sleep(1500);
-			            rotator.stop();
-			            coinFlip.setRotate(0);
-			            
-			            x = token_top_player.localToScene(token_top_player.getBoundsInLocal()).getCenterX()
-			            		- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterX();
-			            y = token_top_player.localToScene(token_top_player.getBoundsInLocal()).getCenterY()
-			            		- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterY();
-			            
-			            scaleCoin.setToX(token_top_player.getScaleX());
-			            scaleCoin.setToY(token_top_player.getScaleY());
-		        	} else {
-		        		Thread.sleep(950);
-			            rotator.stop();
-			            coinFlip.setRotate(180);
-			            
-			            x = token_bottom_player.localToScene(token_bottom_player.getBoundsInLocal()).getCenterX()
-			            		- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterX();
-			            y = token_bottom_player.localToScene(token_bottom_player.getBoundsInLocal()).getCenterY()
-			            		- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterY();
-			            
-			            scaleCoin.setToX(token_bottom_player.getScaleX());
-			            scaleCoin.setToY(token_bottom_player.getScaleY());
-		        	}
+			@Override
+			public void run() {
+				try {
+					double x = 0;
+					double y = 0;
+					if (isTopPlayerSelected) {
+						Thread.sleep(1500);
+						rotator.stop();
+						coinFlip.setRotate(0);
 
-		            translateCoin.setByX(x);
-		            translateCoin.setByY(y);
-		            translateCoin.setNode(coinFlip);
-		            scaleCoin.setNode(coinFlip);
-		            
-		            Thread.sleep(1000);
-		            scaleCoin.play();
-		            translateCoin.play();
+						x = token_top_player.localToScene(token_top_player.getBoundsInLocal()).getCenterX()
+								- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterX();
+						y = token_top_player.localToScene(token_top_player.getBoundsInLocal()).getCenterY()
+								- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterY();
 
-		            translateCoin.setOnFinished(event -> {
-		            	coinFlip.setRotate(0);
-		            });
-		        } catch (InterruptedException e) {}
-		    }
+						scaleCoin.setToX(token_top_player.getScaleX());
+						scaleCoin.setToY(token_top_player.getScaleY());
+					} else {
+						Thread.sleep(950);
+						rotator.stop();
+						coinFlip.setRotate(180);
+
+						x = token_bottom_player.localToScene(token_bottom_player.getBoundsInLocal()).getCenterX()
+								- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterX();
+						y = token_bottom_player.localToScene(token_bottom_player.getBoundsInLocal()).getCenterY()
+								- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterY();
+
+						scaleCoin.setToX(token_bottom_player.getScaleX());
+						scaleCoin.setToY(token_bottom_player.getScaleY());
+					}
+
+					translateCoin.setByX(x);
+					translateCoin.setByY(y);
+					translateCoin.setNode(coinFlip);
+					scaleCoin.setNode(coinFlip);
+
+					Thread.sleep(1000);
+					scaleCoin.play();
+					translateCoin.play();
+
+					translateCoin.setOnFinished(event -> {
+						coinFlip.setRotate(0);
+					});
+				} catch (InterruptedException e) {}
+			}
 		});
 		th.start();
 
 		return currentTurnSPlayer;
 	}
-	
+
 	/**
 	 * Create and return a new RotateTransition object with hard coded
 	 * parameters
@@ -194,42 +200,42 @@ public class BoardController {
 	 * @param item The item to animate
 	 * @return The object
 	 */
-    private RotateTransition createRotator(Node item) {
-        RotateTransition rotator = new RotateTransition(Duration.millis(100), item);
-        rotator.setAxis(Rotate.X_AXIS);
-        rotator.setFromAngle(0);
-        rotator.setToAngle(360);
-        rotator.setInterpolator(Interpolator.LINEAR);
-        rotator.setCycleCount(1000000);
+	private RotateTransition createRotator(Node item) {
+		RotateTransition rotator = new RotateTransition(Duration.millis(100), item);
+		rotator.setAxis(Rotate.X_AXIS);
+		rotator.setFromAngle(0);
+		rotator.setToAngle(360);
+		rotator.setInterpolator(Interpolator.LINEAR);
+		rotator.setCycleCount(1000000);
 
-        return rotator;
-    }
-	
-    /**
-     * Set the currentPlayer to the one in parameter and change the token
-     * location to him with an animation transition.
-     * 
-     * @param currentTurnSPlayer The new player
-     */
+		return rotator;
+	}
+
+	/**
+	 * Set the currentPlayer to the one in parameter and change the token
+	 * location to him with an animation transition.
+	 * 
+	 * @param currentTurnSPlayer The new player
+	 */
 	public final void setCurrentTurnSPlayer(Player currentTurnSPlayer) {
 		this.currentTurnSPlayer = currentTurnSPlayer;
 
 		TranslateTransition translatePos = new TranslateTransition();
 		double x = 0;
-        double y = 0;
+		double y = 0;
 
 		if (currentTurnSPlayer.equals(me)) {
 			x = token_bottom_player.localToScene(token_bottom_player.getBoundsInLocal()).getCenterX()
 					- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterX();
-	        y = token_bottom_player.localToScene(token_bottom_player.getBoundsInLocal()).getCenterY()
-	        		- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterY();
+			y = token_bottom_player.localToScene(token_bottom_player.getBoundsInLocal()).getCenterY()
+					- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterY();
 		} else {
 			x = token_top_player.localToScene(token_top_player.getBoundsInLocal()).getCenterX()
 					- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterX();
-	        y = token_top_player.localToScene(token_top_player.getBoundsInLocal()).getCenterY()
-	        		- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterY();
+			y = token_top_player.localToScene(token_top_player.getBoundsInLocal()).getCenterY()
+					- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterY();
 		}
-		
+
 		coinFlip.setVisible(true);
 		translatePos.setNode(coinFlip);
 		translatePos.setByX(x);
@@ -240,7 +246,7 @@ public class BoardController {
 	public void update() {
 		//TODO
 	}
-	
+
 	public void onDieClicked(ActionEvent e) {
 		//TODO
 	}
