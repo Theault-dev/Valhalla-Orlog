@@ -120,37 +120,37 @@
 						<ImageView fx:id="die5_top_player" fitHeight="50.0"
 							fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@img/common/vide.jpg" />
+								<Image url="@img/common/empty.jpg" />
 							</image>
 						</ImageView>
 						<ImageView fx:id="die4_top_player" fitHeight="50.0"
 							fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@img/common/vide.jpg" />
+								<Image url="@img/common/empty.jpg" />
 							</image>
 						</ImageView>
 						<ImageView fx:id="die3_top_player" fitHeight="50.0"
 							fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@img/common/vide.jpg" />
+								<Image url="@img/common/empty.jpg" />
 							</image>
 						</ImageView>
 						<ImageView fx:id="die2_top_player" fitHeight="50.0"
 							fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@img/common/vide.jpg" />
+								<Image url="@img/common/empty.jpg" />
 							</image>
 						</ImageView>
 						<ImageView fx:id="die1_top_player" fitHeight="50.0"
 							fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@img/common/vide.jpg" />
+								<Image url="@img/common/empty.jpg" />
 							</image>
 						</ImageView>
 						<ImageView fx:id="die0_top_player" fitHeight="50.0"
 							fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@img/common/vide.jpg" />
+								<Image url="@img/common/empty.jpg" />
 							</image>
 						</ImageView>
 						<ImageView fx:id="god2_top_player" fitHeight="50.0"
@@ -219,7 +219,7 @@
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 							</center>
@@ -231,7 +231,7 @@
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 							</center>
@@ -243,7 +243,7 @@
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 							</center>
@@ -255,7 +255,7 @@
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 							</center>
@@ -267,7 +267,7 @@
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 							</center>
@@ -279,7 +279,7 @@
 									pickOnBounds="true" preserveRatio="true"
 									BorderPane.alignment="CENTER">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 							</center>
@@ -296,76 +296,76 @@
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center11_top_player"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center10_top_player"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center9_top_player" fitHeight="20.0"
 									fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center8top_player" fitHeight="20.0"
 									fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center7_top_player" fitHeight="20.0"
 									fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center6_top_player" fitHeight="20.0"
 									fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center5_top_player" fitHeight="20.0"
 									fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center4_top_player" fitHeight="20.0"
 									fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center3_top_player" fitHeight="20.0"
 									fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center2_top_player" fitHeight="20.0"
 									fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center12_top_player1"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 							</children>
@@ -377,84 +377,84 @@
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center2_bottom_player"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center3_bottom_player"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center4_bottom_player"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center5_bottom_player"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center6_bottom_player"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center7_bottom_player"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center8_bottom_player"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center9_bottom_player"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center10_bottom_player"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center11_bottom_player"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 								<ImageView fx:id="center12_bottom_player"
 									fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
 									preserveRatio="true">
 									<image>
-										<Image url="@img/common/vide.jpg" />
+										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
 							</children>
@@ -465,14 +465,14 @@
 					fitWidth="50.0" pickOnBounds="true" preserveRatio="true"
 					GridPane.columnIndex="1" GridPane.rowIndex="3">
 					<image>
-						<Image url="@img/common/icone_1.jpg" />
+						<Image url="@img/common/token.jpg" />
 					</image>
 				</ImageView>
 				<ImageView fx:id="token_top_player" fitHeight="50.0"
 					fitWidth="50.0" pickOnBounds="true" preserveRatio="true"
 					GridPane.columnIndex="3" GridPane.rowIndex="1">
 					<image>
-						<Image url="@img/common/icone_1.jpg" />
+						<Image url="@img/common/token.jpg" />
 					</image>
 				</ImageView>
 			</children>
@@ -483,7 +483,7 @@
 			GridPane.rowIndex="2" GridPane.rowSpan="2147483647"
 			GridPane.valignment="CENTER">
 			<image>
-				<Image url="@img/common/icone_1.jpg" />
+				<Image url="@img/common/token.jpg" />
 			</image>
 		</ImageView>
 	</children>
