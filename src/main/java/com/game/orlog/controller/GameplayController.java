@@ -3,6 +3,7 @@ package com.game.orlog.controller;
 import java.util.ArrayList;
 import com.game.orlog.ValhallaOrlogApplication;
 import com.game.orlog.model.entity.Player;
+import com.game.orlog.model.enumClass.EndGamePossibilitiesEnum;
 import com.game.orlog.model.enumClass.GamePhaseEnum;
 import com.game.orlog.model.items.Die;
 import com.game.orlog.utils.LocalisationSystem;
@@ -17,6 +18,7 @@ public class GameplayController {
 	private GamePhaseEnum gamePhase;
 	private Player me;
 	private Player opponent;
+	private EndGamePossibilitiesEnum endGame;
 	/**
 	 * The player with the token
 	 */
@@ -37,6 +39,7 @@ public class GameplayController {
 		gamePhase = GamePhaseEnum.IDLE;
 		this.me = me;
 		this.opponent = opponent;
+		endGame = EndGamePossibilitiesEnum.NO;
 
 		boardController = new BoardController(me, opponent, view);
 
@@ -106,6 +109,7 @@ public class GameplayController {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {}
 					changeToNextGamePhase();
+					System.out.println("current player = " + currentPlayer.getName());
 					System.out.println("newGamePhase = " + gamePhase);
 				}
 			}
@@ -124,12 +128,14 @@ public class GameplayController {
 				if (currentPlayer.getRemainingRolls() == Player.MAX_ROLLS) {
 					currentPlayer = nextPlayer(currentPlayer);
 					if (currentPlayer.getRemainingRolls() == Player.MAX_ROLLS) {
-						// skip the roll and dice selection phase
 						gamePhase = gamePhase.next().next();
-						break;
+					} else {
+						// TODO get infos from proxy in loop
+						gamePhase = gamePhase.next();
 					}
+				} else {
+					rollDice(currentPlayer);
 				}
-				rollDice(currentPlayer);
 				gamePhase = gamePhase.next();
 			} else {
 				// TODO get infos from proxy in loop
@@ -173,11 +179,23 @@ public class GameplayController {
 			gamePhase = gamePhase.next();
 			break;
 		case END_TURN:
-			firstPlayer = nextPlayer(firstPlayer);
-			currentPlayer = firstPlayer;
+			me.resetAllDiceList();
+			opponent.resetAllDiceList();
+			currentPlayer = firstPlayer = nextPlayer(firstPlayer);
 			boardController.setCurrentTurnSPlayer(currentPlayer);
 		case END_GAME:
-			//TODO
+			if (me.getHealthPoint() == 0 && opponent.getHealthPoint() == 0) {
+				endGame = EndGamePossibilitiesEnum.DRAW;
+				break;
+			}
+			if (me.getHealthPoint() == 0) {
+				endGame = EndGamePossibilitiesEnum.ME_WON;
+				break;
+			}
+			if (opponent.getHealthPoint() == 0) {
+				endGame = EndGamePossibilitiesEnum.OPPONENT_WON;
+				break;
+			}
 			gamePhase = gamePhase.next();
 			break;
 		default:

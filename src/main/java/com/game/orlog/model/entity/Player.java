@@ -32,6 +32,11 @@ public class Player {
 			}
 		}
 	}
+	public void resetAllDiceList() {
+		ArrayList<Die> tmp = getDiceToKeep();
+		setDiceToKeep(getDice());
+		setDice(tmp);
+	}
 	
 	public String getName() {
 		return name;
