@@ -1,0 +1,81 @@
+[
+{"nom":"Rajeunissement d'Idunn","effet":"Reconstitution de votre santé après la phase de résolution",
+"quand":"apres_resolution", "sur_qui":"joueur", "affecte":"jetons_santé",
+"couts":[{"cout":4,"valeur":2},{"cout":7,"valeur":4},{"cout":10,"valeur":6}]}
+,
+{"nom":"Frappe de Thor","effet":"Dégâts infligés à l'ennemi après la phase de résolution",
+"quand":"apres_resolution", "sur_qui":"adversaire", "affecte":"jetons_santé",
+"couts":[{"cout":4,"valeur":-2},{"cout":8,"valeur":-5},{"cout":12,"valeur":-8}]}
+,
+{"nom":"Sacrifice d'Odin", "effet":"Après la phase de résolution, sacrifice d’un nombre quelconque de vos jetons de santé. Gain de jetons de pouvoir par santé sacrifié",
+"quand":"apres_resolution", "sur_qui":"joueur", "affecte":"jetons_pouvoir", "sacrifice": "jetons_santé",
+"couts":[{"cout":6,"valeur":3},{"cout":8,"valeur":4},{"cout":10,"valeur":5}]}
+,
+{"nom":"Gage de Tyr", "effet":"Sacrifice d’un nombre quelconque de vos jetons de santé. Destruction de jetons de pouvoir de l’adversaire par jeton de santé sacrifié",
+"quand":"apres_resolution", "sur_qui":"adversaire", "affecte":"jetons_pouvoir", "sacrifice": "jetons_santé",
+"couts":[{"cout":4,"valeur":-2},{"cout":6,"valeur":-3},{"cout":8,"valeur":-4}]}
+,
+{"nom":"Puissance de Vidar", "effet":"Enlève des dés Casques à l’adversaire.",
+"quand":"avant_resolution", "sur_qui":"adversaire", "affecte":"casques",
+"couts":[{"cout":2,"valeur":-2},{"cout":4,"valeur":-4},{"cout":6,"valeur":-6}]}
+,
+{"nom":"Étreinte de Hel", "effet":"Les dégâts de Hache que vous infligez à l’ennemi vous soignent",
+"quand":"apres_resolution", "sur_qui":"joueur", "affecte":"jetons_santé", "multiplicateur":{"qui":"joueur","quoi":"dégâts_hache"},
+"couts":[{"cout":6,"valeur":1},{"cout":12,"valeur":2},{"cout":18,"valeur":3}]}
+,
+{"nom":"Guet de Heimdal", "effet":"Reconstitution de santé pour chaque attaque bloquée",
+"quand":"apres_resolution", "sur_qui":"joueur", "affecte":"jetons_santé", "multiplicateur":{"qui":"joueur", "quoi":"blocage"},
+"couts":[{"cout":4,"valeur":1},{"cout":7,"valeur":2},{"cout":10,"valeur":3}]}
+,
+{"nom":"Visée d'Ullr", "effet":"Les flèches ignorent les boucliers de l’adversaire",
+"quand":"avant_resolution", "sur_qui":"adversaire", "affecte":"boucliers",
+"couts":[{"cout":2,"valeur":-2},{"cout":3,"valeur":-3},{"cout":4,"valeur":-6}]}
+,
+{"nom":"Invulnérabilité de Baldr", "effet": "Ajout de défenses supplémentaires aux dés de défense",
+"quand":"avant_resolution", "sur_qui":"joueur", "affecte":["boucliers", "casques"],
+"couts":[{"cout":3,"valeur":2},{"cout":6,"valeur":3},{"cout":9,"valeur":4}]}
+,
+{"nom":"Fureur de Brunehilde", "effet":"Multiplication des haches, arrondissement à la valeur supérieure",
+"quand":"avant_resolution", "sur_qui":"joueur", "affecte":"haches", "multiplicateur":{"qui":"joueur", "quoi":"haches"},
+"couts":[{"cout":6,"valeur":1.5},{"cout":10,"valeur":2},{"cout":18,"valeur":3}]}
+,
+{"nom":"Annonce de Skuld", "effet":"Destruction des jetons de pouvoirs de l’adversaire pour chaque dé ayant obtenu une flèche",
+"quand":"apres_resolution","sur_qui":"adversaire", "affecte":"jetons_pouvoir",
+"couts":[{"cout":4,"valeur":-2},{"cout":6,"valeur":-3},{"cout":8,"valeur":-4}]}
+,
+{"nom":"Vue de Frigg", "effet":"Relance d’un nombre quelconque de vos dés ou de ceux de l’adversaire",
+"quand":"avant_resolution", "sur_qui":"au_choix", "affecte":"dés",
+"couts":[{"cout":2, "valeur":2},{"cout":3, "valeur":3},{"cout":4, "valeur":4}]}
+,
+{"nom":"Don de Freyr", "effet":"Ajout au total de la face du dé majoritaire",
+"quand":"avant_resolution", "sur_qui":"joueur", "affecte":"dés",
+"couts":[{"cout":4, "valeur":2},{"cout":6, "valeur":3},{"cout":8, "valeur":4}]}
+,
+{"nom":"Lien de Var", "effet":"Chaque jeton de pouvoir dépensé par l’adversaire vous soigne.",
+"quand":"apres_resolution", "sur_qui":"joueur", "affecte":"jetons_vie", "multiplicateur":{"qui":"adversaire","quoi":"jetons_pouvoir"},
+"couts":[{"cout":10, "valeur":1},{"cout":14, "valeur":2},{"cout":18, "valeur":3}]}
+,
+{"nom":"Vol de Thrymr", "effet":"Réduction de l’effet d’une faveur divine invoquée par l’adversaire durant cette manche",
+"quand":"faveur_divine", "sur_qui":"adversaire", "affecte":"faveur_divine",
+"couts":[{"cout":3, "valeur":-1},{"cout":6, "valeur":-2},{"cout":9, "valeur":-3}]}
+,
+{"nom":"Chasse de Skadi", "effet":"Ajout de flèches à chaque dés ayant obtenu des flèches",
+"quand":"avant_resolution", "sur_qui":"joueur", "affecte":"flèches", "multiplicateur":{"qui":"joueur", "quoi":"flèches"},
+"couts":[{"cout":6,"valeur":2},{"cout":10,"valeur":3},{"cout":14,"valeur":4}]}
+,
+{"nom":"Abondance de Freyja", "effet":"Lancer le/les dés supplémentaire(s) durant ce tour.",
+"quand":"avant_resolution", "sur_qui":"joueur", "affecte":"dés",
+"couts":[{"cout":2, "valeur":1},{"cout":4, "valeur":2},{"cout":6, "valeur":3}]}
+,
+{"nom":"Sagesse de Mimir", "effet":"Gain de jetons d’invocation pour chacun des dégâts subis durant cette manche",
+"quand":"apres_resolution", "sur_qui":"joueur", "affecte":"jetons_pouvoir", "multiplicateur":{"qui":"joueur", "quoi":"dégâts_subis"},
+"couts":[{"cout":3,"valeur":1},{"cout":5,"valeur":2},{"cout":7,"valeur":3}]}
+,
+{"nom":"Ruse de Loki", "effet":"Bannissement des dés de l’adversaire pour cette manche",
+"quand":"avant_resolution", "sur_qui":"adversaire", "affecte":"dés",
+"couts":[{"cout":3, "valeur":-1},{"cout":6, "valeur":-2},{"cout":9, "valeur":-3}]}
+,
+{"nom":"Verve de Bragi", "effet":"Gain de jetons de pouvoir pour chaque dé ayant obtenu une main.",
+"quand":"avant_resolution", "sur_qui":"joueur", "affecte":"jetons_pouvoir", "multiplicateur":{"qui":"joueur", "quoi":"main"},
+"couts":[{"cout":4,"valeur":2},{"cout":8,"valeur":3},{"cout":12,"valeur":4}]}
+]

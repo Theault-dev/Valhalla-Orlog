@@ -1,0 +1,12 @@
+.popup {
+    -fx-background-color: cornsilk;
+    -fx-padding: 10;
+    -fx-border-color: black; 
+    -fx-border-width: 5;
+    -fx-font-size: 16;
+}
+.image-view-wrapper:border {
+    -fx-border-color: yellow;
+    -fx-border-style: solid;
+    -fx-border-width: 5;
+}

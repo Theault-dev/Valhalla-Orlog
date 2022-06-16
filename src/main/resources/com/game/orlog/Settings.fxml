@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleButton?>
@@ -7,50 +12,112 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <Label text="Audio">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <ToggleButton mnemonicParsing="false" text="On" />
-                  <ToggleButton mnemonicParsing="false" text="Off" />
-                  <Label text="Music" />
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <ToggleButton mnemonicParsing="false" text="On" />
-                  <ToggleButton mnemonicParsing="false" text="Off" />
-                  <Label text="Effects" />
-               </children>
-            </HBox>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <Label text="In game">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <ToggleButton mnemonicParsing="false" text="On" />
-                  <ToggleButton mnemonicParsing="false" text="Off" />
-                  <Label text="Board status" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </children>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0"
+	prefWidth="260.0" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.game.orlog.controller.SettingsController">
+	<children>
+		<ScrollPane fx:id="view" maxHeight="-Infinity"
+			maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+			prefHeight="230.0" prefWidth="250.0">
+			<content>
+				<VBox alignment="CENTER" prefHeight="238.0" prefWidth="230.0">
+					<children>
+						<Label fx:id="settings_title" text="Settings">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
+						<VBox alignment="CENTER" prefHeight="61.0" prefWidth="230.0">
+							<children>
+								<HBox prefHeight="29.0" prefWidth="230.0">
+									<VBox.margin>
+										<Insets bottom="10.0" left="10.0" right="10.0"
+											top="10.0" />
+									</VBox.margin>
+									<children>
+										<ComboBox fx:id="settings_languages_list"
+											prefWidth="150.0" />
+										<Label fx:id="settings_language" prefHeight="21.0"
+											prefWidth="116.0" text="Language">
+											<HBox.margin>
+												<Insets left="5.0" top="5.0" />
+											</HBox.margin>
+										</Label>
+									</children>
+								</HBox>
+							</children>
+							<opaqueInsets>
+								<Insets />
+							</opaqueInsets>
+						</VBox>
+						<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+							<children>
+								<Label fx:id="settings_audio_title" text="Audio">
+									<font>
+										<Font size="18.0" />
+									</font>
+								</Label>
+								<HBox prefHeight="100.0" prefWidth="200.0">
+									<children>
+										<ToggleButton mnemonicParsing="false" text="On" />
+										<ToggleButton mnemonicParsing="false" text="Off" />
+										<Label fx:id="settings_music" text="Music">
+											<HBox.margin>
+												<Insets left="5.0" top="5.0" />
+											</HBox.margin>
+										</Label>
+									</children>
+									<VBox.margin>
+										<Insets left="10.0" top="10.0" />
+									</VBox.margin>
+								</HBox>
+								<HBox prefHeight="100.0" prefWidth="200.0">
+									<children>
+										<ToggleButton mnemonicParsing="false" text="On" />
+										<ToggleButton mnemonicParsing="false" text="Off" />
+										<Label fx:id="settings_effects" text="Effects">
+											<HBox.margin>
+												<Insets left="5.0" top="5.0" />
+											</HBox.margin>
+										</Label>
+									</children>
+									<VBox.margin>
+										<Insets left="10.0" top="10.0" />
+									</VBox.margin>
+								</HBox>
+							</children>
+							<opaqueInsets>
+								<Insets />
+							</opaqueInsets>
+						</VBox>
+						<VBox alignment="CENTER" prefHeight="76.0" prefWidth="230.0">
+							<children>
+								<Label fx:id="settings_ingame_title" text="In game">
+									<font>
+										<Font size="18.0" />
+									</font>
+								</Label>
+								<HBox prefHeight="100.0" prefWidth="200.0">
+									<children>
+										<ToggleButton mnemonicParsing="false" text="On" />
+										<ToggleButton mnemonicParsing="false" text="Off" />
+										<Label fx:id="settings_status_board" text="Board status">
+											<HBox.margin>
+												<Insets left="5.0" top="5.0" />
+											</HBox.margin>
+										</Label>
+									</children>
+									<VBox.margin>
+										<Insets left="10.0" top="10.0" />
+									</VBox.margin>
+								</HBox>
+							</children>
+						</VBox>
+					</children>
+				</VBox>
+			</content>
+		</ScrollPane>
+	</children>
 </VBox>

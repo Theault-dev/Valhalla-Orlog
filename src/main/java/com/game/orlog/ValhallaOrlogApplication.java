@@ -5,6 +5,7 @@ import com.game.orlog.menu.HomePage;
 import com.game.orlog.menu.Menu;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+<<<<<<< HEAD
 public class ValhallaOrlogApplication extends Application {
     private VBox holder;
     private Menu current;
@@ -66,8 +68,32 @@ public class ValhallaOrlogApplication extends Application {
         }
         current.show();
     }
+=======
+>>>>>>> Theault
 
-    public static void main(String[] args) {
-        launch();
-    }
+public class ValhallaOrlogApplication extends Application {
+	private static Stage stage;
+	
+	@Override
+	public void start(Stage stage) throws IOException {
+		ValhallaOrlogApplication.stage = stage;
+		// TODO proper start
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass()
+				.getResource("ValhallaOrlogMain.fxml"));
+		Scene scene = new Scene(fxmlLoader.load());
+		stage.setTitle("Game game gaming.");
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public static Stage getStage() {
+		return stage;
+	}
+	public static Parent getRoot() {
+		return stage.getScene().getRoot();
+	}
+
+	public static void main(String[] args) {
+		launch();
+	}
 }
