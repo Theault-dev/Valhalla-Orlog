@@ -19,7 +19,7 @@ public class ValhallaOrlogApplication extends Application {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass()
 				.getResource("ValhallaOrlogMain.fxml"));
 		Scene scene = new Scene(fxmlLoader.load());
-		stage.setTitle("Game game gaming.");
+		stage.setTitle("Valhala Orlog");
 		stage.setScene(scene);
 		stage.show();
 	}
