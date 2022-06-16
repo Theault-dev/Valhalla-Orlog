@@ -82,37 +82,32 @@
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/vide.jpg" />
+                        <Image url="@img/common/game/vide.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/vide.jpg" />
+                        <Image url="@img/common/game/vide.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/vide.jpg" />
+                        <Image url="@img/common/game/vide.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/vide.jpg" />
+                        <Image url="@img/common/game/vide.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/vide.jpg" />
+                        <Image url="@img/common/game/vide.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/vide.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/gods/color/vidar.jpg" />
+                        <Image url="@img/common/game/vide.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -127,7 +122,12 @@
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/icone_1.jpg" />
+                        <Image url="@img/gods/color/vidar.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/common/game/icone_1.jpg" />
                      </image>
                   </ImageView>
                </children>
@@ -136,7 +136,7 @@
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/icone_1.jpg" />
+                        <Image url="@img/common/game/icone_1.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -156,32 +156,32 @@
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/vide.jpg" />
+                        <Image url="@img/common/game/vide.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/vide.jpg" />
+                        <Image url="@img/common/game/vide.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/vide.jpg" />
+                        <Image url="@img/common/game/vide.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/vide.jpg" />
+                        <Image url="@img/common/game/vide.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/vide.jpg" />
+                        <Image url="@img/common/game/vide.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/common/vide.jpg" />
+                        <Image url="@img/common/game/vide.jpg" />
                      </image>
                   </ImageView>
                </children>
@@ -192,62 +192,62 @@
                      <children>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                      </children>
@@ -256,62 +256,62 @@
                      <children>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/common/vide.jpg" />
+                              <Image url="@img/common/game/vide.jpg" />
                            </image>
                         </ImageView>
                      </children>
