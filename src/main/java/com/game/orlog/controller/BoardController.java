@@ -75,7 +75,7 @@ public class BoardController {
 
 		tokenTopPlayer.setVisible(false);
 		tokenBottomPlayer.setVisible(false);
-		
+		hideMiddleDice();
 	}
 
 	private void populateNode() {
@@ -128,6 +128,146 @@ public class BoardController {
 			}
 		};
 		refreshGold();
+	}
+	
+	public void moveSelectedDiceToMiddle() {
+		byte meAxe = 0;
+		byte meHelmet = 0;
+		byte meArrow = 0;
+		byte meShield = 0;
+		byte opponentAxe = 0;
+		byte opponentHelmet = 0;
+		byte opponentArrow = 0;
+		byte opponentShield = 0;
+		
+		for (Die die : bottomPlayer.getDiceToKeep()) {
+			if (die == null) {
+				continue;
+			}
+			switch (die.getVisibleFace().getFace()){
+			case AXE :
+				meAxe++;
+				break;
+			case ARROW :
+				meArrow++;
+				break;
+			case SHIELD :
+				meShield++;
+				break;
+			case HELMET :
+				meHelmet++;
+				break;
+			default:
+				break;
+			}
+		}
+		for (Die die : topPlayer.getDiceToKeep()) {
+			if (die == null) {
+				continue;
+			}
+			switch (die.getVisibleFace().getFace()){
+			case AXE :
+				opponentAxe++;
+				break;
+			case ARROW :
+				opponentArrow++;
+				break;
+			case SHIELD :
+				opponentShield++;
+				break;
+			case HELMET :
+				opponentHelmet++;
+				break;
+			default:
+				break;
+			}
+		}
+		for (Node node : elementsWithId) {
+			if (node.getId() == null) {
+				continue;
+			}
+			if (!node.getId().contains("center")) {
+				continue;
+			}
+			
+			byte indexImage = (byte) (node.getId().charAt(6)-48);
+			if (node.getId().charAt(7)-48 < 9) {
+				indexImage = (byte) (node.getId().charAt(7)-48 + 9);
+			}
+			boolean needUpdate = false;
+			String path = "";
+			if (node.getId().contains("BottomPlayer")) {
+				if (indexImage <= meAxe) {
+					path = "img/common/axe.jpg";
+					needUpdate = true;
+				} else if (indexImage <= Math.max(meAxe, opponentHelmet)
+										 + meArrow
+						   && indexImage > Math.max(meAxe, opponentHelmet)) {
+					path = "img/common/arrow.jpg";
+					needUpdate = true;
+				} else if (indexImage <= Math.max(meAxe, opponentHelmet)
+										 + Math.max(meArrow, opponentShield)
+										 + meShield
+						   && indexImage > Math.max(meAxe, opponentHelmet)
+						   				   + Math.max(meArrow, opponentShield)) {
+					path = "img/common/shield.jpg";
+					needUpdate = true;
+				} else if (indexImage <= Math.max(meAxe, opponentHelmet)
+										 + Math.max(meArrow, opponentShield)
+										 + Math.max(meShield, opponentArrow)
+										 + meHelmet
+						   && indexImage > Math.max(meAxe, opponentHelmet)
+						   				   + Math.max(meArrow, opponentShield)
+						   				   + Math.max(meShield, opponentArrow)) {
+					path = "img/common/helmet.jpg";
+					needUpdate = true;
+				}
+			} else if (node.getId().contains("TopPlayer")) {
+				if (indexImage <= opponentHelmet) {
+					path = "img/common/helmet.jpg";
+					needUpdate = true;
+				} else if (indexImage <= Math.max(meAxe, opponentHelmet)
+								  + opponentShield
+					&& indexImage > Math.max(meAxe, opponentHelmet)) {
+					path = "img/common/shield.jpg";
+					needUpdate = true;
+				} else if (indexImage <= Math.max(meAxe, opponentHelmet)
+										 + Math.max(meArrow, opponentShield)
+										 + opponentArrow
+						   && indexImage > Math.max(meAxe, opponentHelmet)
+						   				   + Math.max(meArrow, opponentShield)) {
+					path = "img/common/arrow.jpg";
+					needUpdate = true;
+				} else if (indexImage <= Math.max(meAxe, opponentHelmet)
+										 + Math.max(meArrow, opponentShield)
+										 + Math.max(meShield, opponentArrow)
+										 + opponentAxe
+						   && indexImage > Math.max(meAxe, opponentHelmet)
+						   				   + Math.max(meArrow, opponentShield)
+						   				   + Math.max(meShield, opponentArrow)) {
+					path = "img/common/axe.jpg";
+					needUpdate = true;
+				}
+			}
+			
+			if (needUpdate) {
+				URL url = ValhallaOrlogApplication.class.getResource(path);
+				((ImageView)node).setImage(new Image(url.toExternalForm()));
+				node.setVisible(true);
+			}
+		}
+	}
+	
+	public void hideMiddleDice() {
+		for (Node node : elementsWithId) {
+			if (node.getId() == null) {
+				continue;
+			}
+			if (!node.getId().contains("center")) {
+				continue;
+			}
+			node.setVisible(false);
+		}
 	}
 	
 	/**

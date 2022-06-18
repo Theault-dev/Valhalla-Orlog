@@ -10,11 +10,11 @@ import com.game.orlog.model.items.Die;
 import com.game.orlog.utils.LocalisationSystem;
 
 import javafx.scene.Node;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 public class GameplayController {
+	private final static byte SPEED = 1;
 	private byte turnNumber;
 	private GamePhaseEnum gamePhase;
 	private Player me;
@@ -113,16 +113,15 @@ public class GameplayController {
 						turnNumber++;
 						if (threadDoATurn != null
 								&& !isDoATurnOver) {
-							System.out.println("finish thread");
 							threadDoATurn = null;
 						}
 						if (isDoATurnOver) {
-							System.out.println("new thread");
 							threadDoATurn = createThreadDoATurn();
 							threadDoATurn.start();
 						}
 					}
 				}
+				//TODO need a popup window with new FXML
 				System.out.println(endGame);
 			}
 		});
@@ -142,11 +141,15 @@ public class GameplayController {
 
 	public void doATurn() {
 		while(gamePhase != GamePhaseEnum.IDLE) {
-			processToNextGamePhase();
+			try {
+				processToNextGamePhase();
+				//to slow down the game
+				Thread.sleep(SPEED*1000);
+			} catch (InterruptedException e) {}
 		}
 	}
 
-	public void processToNextGamePhase() {
+	public void processToNextGamePhase() throws InterruptedException {
 		switch (gamePhase) {
 		case IDLE:
 			break;
@@ -209,16 +212,15 @@ public class GameplayController {
 			//TODO
 			gamePhase = gamePhase.next();
 			break;
-		case RESOLVE: //steal golds
-			updatePlayerGoldenDice(me);
+		case RESOLVE: //steal golds & place dice in center
+			boardController.moveSelectedDiceToMiddle();
+			updatePlayerGoldWithGoldenDice(me);
 			//TODO test. Replace by proxy call
 			opponent.addGold((byte) 12);
 			
 			boardController.refreshGold();
 			
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {}
+			Thread.sleep(1000);
 
 			stealGold();
 			boardController.refreshGold();
@@ -248,6 +250,7 @@ public class GameplayController {
 			boardController.setCurrentTurnSPlayer(currentPlayer);
 			
 			boardController.resetHighlightedDice();
+			boardController.hideMiddleDice();
 		case END_GAME:
 			if (me.getHealthPoint() == 0 && opponent.getHealthPoint() == 0) {
 				endGame = EndGamePossibilitiesEnum.DRAW;
@@ -266,7 +269,6 @@ public class GameplayController {
 			}
 		default:
 			gamePhase = GamePhaseEnum.IDLE;
-			System.out.println("default" + gamePhase);
 			break;
 		}
 	}
@@ -392,7 +394,7 @@ public class GameplayController {
 		j1.removeGold(goldToSteal);
 	}
 	
-	private void updatePlayerGoldenDice(Player player) {
+	private void updatePlayerGoldWithGoldenDice(Player player) {
 		for(Die die : player.getDiceToKeep()) {
 			if (die.getVisibleFace().getIsSpecial()) {
 				player.incrementGold();
@@ -470,26 +472,5 @@ public class GameplayController {
 		} else {
 			return me;
 		}
-
-		//		//TODO it's a test
-		//		Thread th = new Thread() {
-		//			public void run() {
-		//				try {
-		//					while(true) {
-		//					sleep(4000);
-		//						if (firstPlayer.equals(me)) {
-		//							firstPlayer = opponent;
-		//						} else {
-		//							firstPlayer = me;
-		//						}
-		//						System.out.println("change");
-		//						boardController.setCurrentTurnSPlayer(firstPlayer);
-		//					}
-		//				} catch (InterruptedException e) {
-		//					e.printStackTrace();
-		//				}
-		//			}
-		//		};
-		//		th.start();
 	}
 }
