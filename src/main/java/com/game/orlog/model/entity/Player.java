@@ -56,8 +56,12 @@ public class Player {
 	public final byte getHealthPoint() {
 		return healthPoint;
 	}
-	public final void setHealthPoint(byte healthPoint) {
-		this.healthPoint = healthPoint;
+	public final void deduceHealthPoint(byte healthPoint) {
+		if (this.healthPoint - healthPoint < 0) {
+			this.healthPoint = 0;
+			return;
+		}
+		this.healthPoint -= healthPoint;
 	}
 	public final ArrayList<Divinity> getDivinities() {
 		return divinities;

@@ -30,6 +30,7 @@ public class GameplayController {
 	private Player currentPlayer;
 	
 	private Thread threadDoATurn;
+	private boolean isDoATurnOver;
 
 	private BoardController boardController;
 
@@ -94,6 +95,7 @@ public class GameplayController {
 			}
 		});
 		
+		isDoATurnOver = true;
 		gameLoop();
 	}
 
@@ -102,20 +104,23 @@ public class GameplayController {
 		Thread gameThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {}
 				while(gamePhase != GamePhaseEnum.END_GAME) {
 					if (gamePhase == GamePhaseEnum.IDLE) {
 						gamePhase = gamePhase.next();
 						turnNumber++;
-						System.out.println(turnNumber);
 						if (threadDoATurn != null
-								&& threadDoATurn.isAlive()) {
+								&& !isDoATurnOver) {
+							System.out.println("finish thread");
 							threadDoATurn = null;
 						}
-						threadDoATurn = createThreadDoATurn();
-						threadDoATurn.start();
-						try {
-							Thread.sleep(10000);
-						} catch (InterruptedException e) {}
+						if (isDoATurnOver) {
+							System.out.println("new thread");
+							threadDoATurn = createThreadDoATurn();
+							threadDoATurn.start();
+						}
 					}
 				}
 				System.out.println(endGame);
@@ -128,26 +133,20 @@ public class GameplayController {
 		return new Thread(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					doATurn();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				isDoATurnOver = false;
+				doATurn();
+				isDoATurnOver = true;
 			}
 		});
 	}
 
-	public void doATurn() throws InterruptedException {
+	public void doATurn() {
 		while(gamePhase != GamePhaseEnum.IDLE) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {}
-			System.out.println("newGamePhase = " + gamePhase + " ; " +currentPlayer.getName());
 			processToNextGamePhase();
 		}
 	}
 
-	public void processToNextGamePhase() throws InterruptedException {
+	public void processToNextGamePhase() {
 		switch (gamePhase) {
 		case IDLE:
 			break;
@@ -216,28 +215,32 @@ public class GameplayController {
 			opponent.addGold((byte) 12);
 			
 			boardController.refreshGold();
-			Thread.sleep(1000);
 			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {}
+
 			stealGold();
 			boardController.refreshGold();
-			gamePhase = gamePhase.next();
-			break;
-		case FIGHT:
-			//TODO
-			me.setHealthPoint((byte) 10);
 			gamePhase = gamePhase.next();
 			break;
 		case DIVINE_FAVOR:
 			//TODO
 			gamePhase = gamePhase.next();
 			break;
+		case FIGHT:
+			//TODO need dice from opponent proxy
+			fight();
+			gamePhase = gamePhase.next();
+			break;
 		case END_TURN:
 			me.resetRemainingThrows();
 			me.resetAllDiceList();
 			boardController.setLifeImageForPlayer(me, me.getHealthPoint());
-
+			
 			opponent.resetRemainingThrows();
-			opponent.resetAllDiceList();
+			//TODO uncomment when real player is implemented (PROXY)
+//			opponent.resetAllDiceList();
 			boardController.setLifeImageForPlayer(opponent,
 												  opponent.getHealthPoint());
 			
@@ -245,28 +248,103 @@ public class GameplayController {
 			boardController.setCurrentTurnSPlayer(currentPlayer);
 			
 			boardController.resetHighlightedDice();
-			
-			gamePhase = gamePhase.next();
 		case END_GAME:
 			if (me.getHealthPoint() == 0 && opponent.getHealthPoint() == 0) {
 				endGame = EndGamePossibilitiesEnum.DRAW;
+				gamePhase = gamePhase.next();
 				break;
 			}
 			if (me.getHealthPoint() == 0) {
-				endGame = EndGamePossibilitiesEnum.ME_WON;
+				endGame = EndGamePossibilitiesEnum.OPPONENT_WON;
+				gamePhase = gamePhase.next();
 				break;
 			}
 			if (opponent.getHealthPoint() == 0) {
-				endGame = EndGamePossibilitiesEnum.OPPONENT_WON;
+				endGame = EndGamePossibilitiesEnum.ME_WON;
+				gamePhase = gamePhase.next();
 				break;
 			}
-			break;
 		default:
-			gamePhase = gamePhase.next();
+			gamePhase = GamePhaseEnum.IDLE;
+			System.out.println("default" + gamePhase);
 			break;
 		}
 	}
-	
+
+	/**
+	 * Calculates health point for each player after
+	 * the dice's battle.
+	 */
+	private void fight() {
+		byte meAxe = 0;
+		byte meHelmet = 0;
+		byte meArrow = 0;
+		byte meShield = 0;
+		byte opponentAxe = 0;
+		byte opponentHelmet = 0;
+		byte opponentArrow = 0;
+		byte opponentShield = 0;
+		byte meDamage = 0;
+		byte opponentDamage = 0;
+		
+		for (Die die : me.getDiceToKeep()) {
+			if (die == null) {
+				continue;
+			}
+			switch (die.getVisibleFace().getFace()){
+			case AXE :
+				meAxe++;
+				break;
+			case ARROW :
+				meArrow++;
+				break;
+			case SHIELD :
+				meShield++;
+				break;
+			case HELMET :
+				meHelmet++;
+				break;
+			default:
+				break;
+			}
+		}
+		for (Die die : opponent.getDiceToKeep()) {
+			if (die == null) {
+				continue;
+			}
+			switch (die.getVisibleFace().getFace()){
+			case AXE :
+				opponentAxe++;
+				break;
+			case ARROW :
+				opponentArrow++;
+				break;
+			case SHIELD :
+				opponentShield++;
+				break;
+			case HELMET :
+				opponentHelmet++;
+				break;
+			default:
+				break;
+			}
+		}
+		if (opponentArrow - meShield > 0) {
+			meDamage += opponentArrow - meShield;
+		}
+		if (opponentAxe - meHelmet > 0) {
+			meDamage += opponentAxe - meHelmet;
+		}
+		if (meAxe - opponentHelmet > 0) {
+			opponentDamage += meAxe - opponentHelmet;
+		}
+		if (meArrow - opponentShield > 0) {
+			opponentDamage += meArrow - opponentShield;
+		}
+		me.deduceHealthPoint(meDamage);
+		opponent.deduceHealthPoint(opponentDamage);
+	}
+
 	/**
 	 * Calculates and proceed to the stealing for each player.
 	 * Starts with the player with the token.
@@ -280,7 +358,7 @@ public class GameplayController {
 		
 		Player j1 = firstPlayer;
 		Player j2 = null;
-		if (currentPlayer.equals(me)) {
+		if (firstPlayer.equals(me)) {
 			j2 = opponent;
 		} else {
 			j2 = me;
@@ -298,7 +376,7 @@ public class GameplayController {
 		}
 		j1.addGold(goldToSteal);
 		j2.removeGold(goldToSteal);
-		
+		/**************************************/
 		goldToSteal = 0;
 		maxGoldToSteal = j1.getGold();
 		for (Die die : j2.getDiceToKeep()) {

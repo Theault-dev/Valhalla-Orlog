@@ -2,7 +2,7 @@ package com.game.orlog.model.enumClass;
 
 public enum GamePhaseEnum implements GeneralEnum {
 	IDLE(""), ROLL(""), DICE_SELECTION(""), FAVORS_SELECTION(""),
-	RESOLVE(""), FIGHT("avant_resolution"), DIVINE_FAVOR("faveur_divine"),
+	RESOLVE(""), DIVINE_FAVOR("faveur_divine"), FIGHT("avant_resolution"),
 	END_TURN("apres_resolution"), END_GAME("");
 
 	private String name;
@@ -17,9 +17,9 @@ public enum GamePhaseEnum implements GeneralEnum {
 	}
 
 	public GamePhaseEnum next() {
-		return GamePhaseEnum.values()[(this.ordinal() + 1) % (GamePhaseEnum.values().length-1)];
+		return GamePhaseEnum.values()[(this.ordinal() + 1) % (GamePhaseEnum.values().length)];
 	}
 	public GamePhaseEnum previous() {
-		return GamePhaseEnum.values()[(this.ordinal() - 1) % (GamePhaseEnum.values().length-1)];
+		return GamePhaseEnum.values()[(this.ordinal() - 1) % (GamePhaseEnum.values().length)];
 	}
 }
