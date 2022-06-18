@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.game.orlog.ValhallaOrlogApplication;
+import com.game.orlog.model.entity.Divinity;
 import com.game.orlog.model.entity.Player;
 import com.game.orlog.utils.CSVLoader;
 import com.game.orlog.utils.LocalisationSystem;
 import com.game.orlog.utils.PopupWindow;
+import com.game.orlog.utils.Utils;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,11 +66,11 @@ public class ValhallaOrlogController {
 		};
 
 		settings.setOnMousePressed(event -> {
-			PopupWindow.showPopupMessage("Settings.fxml", ValhallaOrlogApplication.getRoot());
+			PopupWindow.showPopupMessage("Settings.fxml");
 		});
 		
 		rulesButton.setOnMousePressed(event -> {
-			PopupWindow.showPopupMessage("Rules.fxml", ValhallaOrlogApplication.getRoot());
+			PopupWindow.showPopupMessage("Rules.fxml");
 		});
 	}
 
@@ -86,7 +89,11 @@ public class ValhallaOrlogController {
 
 		//load the controller. Must be done AFTER the setScene
 		//TODO instanciate players
-		Player me = new Player("SAINT Bernard de La Villardière", null);
+		ArrayList<Divinity> meDiv = new ArrayList<>();
+		meDiv.add(Utils.getDivinityByName("baldr"));
+		meDiv.add(Utils.getDivinityByName("frigg"));
+		meDiv.add(Utils.getDivinityByName("heimdal"));
+		Player me = new Player("SAINT Bernard de La Villardière", meDiv);
 		Player opponent = new Player("Titouan le gueu des prairies", null);
 		gameplayController = new GameplayController(me, opponent, view);
 		loader.setController(gameplayController);

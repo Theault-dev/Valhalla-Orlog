@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+
 import com.game.orlog.ValhallaOrlogApplication;
 import com.game.orlog.model.Board;
+import com.game.orlog.model.entity.Divinity;
 import com.game.orlog.model.entity.Player;
 import com.game.orlog.model.items.Die;
 import com.game.orlog.utils.LocalisationSystem;
+import com.game.orlog.utils.PopupWindow;
 
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
@@ -24,6 +28,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
@@ -32,31 +37,45 @@ public class BoardController {
 
 	private Player bottomPlayer;
 	private Player topPlayer;
-	private Map<BorderPane, Boolean> mapDice;
-
 	private Player currentTurnSPlayer;
 
 	private ArrayList<Node> elementsWithId;
 
 	private ImageView coinFlip;
-	private ImageView token_top_player;
-	private ImageView token_bottom_player;
+	
+	private ImageView tokenTopPlayer;
 	private BorderPane healthTopPlayer;
+	private Text goldTopPlayer;
+	private ImageView tokenBottomPlayer;
 	private BorderPane healthBottomPlayer;
+	private Text goldBottomPlayer;
+	//TODO add also the topPlayer dice
+	private Map<BorderPane, Boolean> mapBottomDice;
+	private Map<BorderPane, Boolean> mapTopDice;
+	private BorderPane[] bottomDivinities;
+	private BorderPane[] topDivinities;
 	
 	private Button validateSelectionButton;
 
 	public BoardController(Player bottomPlayer, Player topPlayer, GridPane view) {
 		this.bottomPlayer = bottomPlayer;
 		this.topPlayer = topPlayer;
-		mapDice = new HashMap<BorderPane, Boolean>();
+		mapBottomDice = new HashMap<BorderPane, Boolean>();
+		mapTopDice = new HashMap<BorderPane, Boolean>();
+		bottomDivinities = new BorderPane[3];
+		topDivinities = new BorderPane[3];
 
 		board = new Board(topPlayer, bottomPlayer);
-
+		
 		populateNode();
 
-		token_top_player.setVisible(false);
-		token_bottom_player.setVisible(false);
+		setImagesOnBottomPlayerGod();
+		//TODO uncomment when proxy updated TopPlayer
+//		setImagesOnTopPlayerGod();
+
+		tokenTopPlayer.setVisible(false);
+		tokenBottomPlayer.setVisible(false);
+		
 	}
 
 	private void populateNode() {
@@ -68,20 +87,18 @@ public class BoardController {
 			}
 			if (node.getId().equals("coinFlip")) {
 				this.coinFlip = (ImageView) node;
-			} else if (node.getId().equals("token_top_player")) {
-				token_top_player = (ImageView) node;
-			} else if (node.getId().equals("token_bottom_player")) {
-				token_bottom_player = (ImageView) node;
+			} else if (node.getId().equals("tokenTopPlayer")) {
+				tokenTopPlayer = (ImageView) node;
+			} else if (node.getId().equals("tokenBottomPlayer")) {
+				tokenBottomPlayer = (ImageView) node;
 			} else if (node.getId().contains("die")) {
-				if (node.getId().contains("bottom")) {
-					mapDice.put((BorderPane) node, false);
-					//TODO delete
-					setImageOnDie(bottomPlayer,
-							bottomPlayer.getDice().get(node.getId().charAt(3)-48),
-							(byte) (node.getId().charAt(3)-48));
+				if (node.getId().contains("Bottom")) {
+					mapBottomDice.put((BorderPane) node, false);
+				} else {
+					mapTopDice.put((BorderPane) node, false);
 				}
 			} else if (node.getId().contains("name")) {
-				if (node.getId().contains("bottom")) {
+				if (node.getId().contains("Bottom")) {
 					((Labeled) node).setText(bottomPlayer.getName());
 				} else {
 					((Labeled) node).setText(topPlayer.getName());
@@ -92,11 +109,25 @@ public class BoardController {
 				healthTopPlayer = (BorderPane) node;
 			} else if (node.getId().equals("healthBottomPlayer")) {
 				healthBottomPlayer = (BorderPane) node;
+			} else if (node.getId().contains("god")) {
+				if (node.getId().contains("BottomPlayer")) {
+					byte index = (byte) (node.getId().charAt(3)-48);
+					bottomDivinities[index] = (BorderPane) node;
+					((BorderPane)node).setOnMouseClicked(event -> {
+						onGodClicked((BorderPane) node);
+					});
+				}
+				//TODO TopPlayer
+			} else if (node.getId().equals("goldBottomPlayer")) {
+				goldBottomPlayer = (Text) node;
+			} else if (node.getId().equals("goldTopPlayer")) {
+				goldTopPlayer = (Text) node;
 			} else {
 				//				System.out.print(node.getId() + "\t");
 				//				System.out.println(node.localToScreen(node.getBoundsInLocal()));
 			}
 		};
+		refreshGold();
 	}
 	
 	/**
@@ -115,13 +146,50 @@ public class BoardController {
 		}
 	}
 	
-	public Map<BorderPane, Boolean> getMapDice() {
-		return mapDice;
+	public Map<BorderPane, Boolean> getmapBottomDice() {
+		return mapBottomDice;
 	}
 	public Button getValidateSelectionButton() {
 		return validateSelectionButton;
 	}
 
+	public void refreshGold() {
+		goldTopPlayer.setText(((Byte)topPlayer.getGold()).toString());
+		goldBottomPlayer.setText(((Byte)bottomPlayer.getGold()).toString());
+	}
+	
+	public void setImagesOnBottomPlayerGod() {
+		byte index = 0;
+		for (BorderPane node : bottomDivinities) {
+			String path = "img/gods/color/" + bottomPlayer
+					.getDivinities()
+					.get(index)
+					.getName()
+					.toLowerCase();
+			path = path.concat(".jpg");
+			URL url = ValhallaOrlogApplication.class.getResource(path);
+			((ImageView)((BorderPane) node).getCenter()).setImage(new Image(url.toExternalForm()));
+
+			index++;
+		}
+	}
+	
+	public void setImagesOnTopPlayerGod() {
+		byte index = 0;
+		for (BorderPane node : topDivinities) {
+			String path = "img/gods/color/" + topPlayer
+					.getDivinities()
+					.get(index)
+					.getName()
+					.toLowerCase();
+			path = path.concat(".jpg");
+			URL url = ValhallaOrlogApplication.class.getResource(path);
+			((ImageView)((BorderPane) node).getCenter()).setImage(new Image(url.toExternalForm()));
+
+			index++;
+		}
+	}
+	
 	/**
 	 * Set The image for the dice of a player.
 	 * 
@@ -130,7 +198,13 @@ public class BoardController {
 	 * @param dieNumber The index of the die in the list.
 	 */
 	public void setImageOnDie(Player player, Die die, byte dieNumber) {
-		for (Node node : mapDice.keySet()) {
+		Set<BorderPane> setDice;
+		if (player.equals(bottomPlayer)) {
+			setDice = mapBottomDice.keySet();
+		} else {
+			setDice = mapTopDice.keySet();
+		}
+		for (Node node : setDice) {
 			if (node.getId().charAt(3)-48 == dieNumber) {
 				String path = "img/common/" + die.getVisibleFace().getFace().name()
 						.toLowerCase();
@@ -146,20 +220,44 @@ public class BoardController {
 	}
 
 	public void onDieClick(Node nodeClicked) {
-		for (Node node : mapDice.keySet()) {
+		for (Node node : mapBottomDice.keySet()) {
 			if (!nodeClicked.equals(node)) {
 				continue;
 			}
 			PseudoClass imageViewBorder = PseudoClass.getPseudoClass("border");
-			mapDice.replace((BorderPane) node, !mapDice.get(node));
-			node.pseudoClassStateChanged(imageViewBorder, mapDice.get(node));
+			mapBottomDice.replace((BorderPane) node, !mapBottomDice.get(node));
+			node.pseudoClassStateChanged(imageViewBorder, mapBottomDice.get(node));
 		}
 	}
 
-	public void resetHighlitedDice() {
-		for (BorderPane node : mapDice.keySet()) {
+	public void onGodClicked(BorderPane node) {
+		for (BorderPane god : bottomDivinities) {
+			if (god.equals(node)) {
+				String path = ((ImageView)god.getCenter()).getImage()
+														  .getUrl();
+				PopupWindow.showPopupMessage("God.fxml",
+						path.substring(path.lastIndexOf('/')+1
+								     , path.lastIndexOf('.')));
+				
+				return;
+			}
+		}
+		for (BorderPane god : topDivinities) {
+			if (god.equals(node)) {
+				String path = ((ImageView)god.getCenter()).getImage().getUrl();
+				PopupWindow.showPopupMessage("God.fxml",
+						path.substring(path.lastIndexOf('/')+1
+								     , path.lastIndexOf('.')));
+				
+				return;
+			}
+		}
+	}
+	
+	public void resetHighlightedDice() {
+		for (BorderPane node : mapBottomDice.keySet()) {
 			PseudoClass imageViewBorder = PseudoClass.getPseudoClass("border");
-			mapDice.replace(node, false);
+			mapBottomDice.replace(node, false);
 			node.pseudoClassStateChanged(imageViewBorder, false);
 		}
 	}
@@ -192,25 +290,25 @@ public class BoardController {
 						rotator.stop();
 						coinFlip.setRotate(0);
 
-						x = token_top_player.localToScene(token_top_player.getBoundsInLocal()).getCenterX()
+						x = tokenTopPlayer.localToScene(tokenTopPlayer.getBoundsInLocal()).getCenterX()
 								- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterX();
-						y = token_top_player.localToScene(token_top_player.getBoundsInLocal()).getCenterY()
+						y = tokenTopPlayer.localToScene(tokenTopPlayer.getBoundsInLocal()).getCenterY()
 								- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterY();
 
-						scaleCoin.setToX(token_top_player.getScaleX());
-						scaleCoin.setToY(token_top_player.getScaleY());
+						scaleCoin.setToX(tokenTopPlayer.getScaleX());
+						scaleCoin.setToY(tokenTopPlayer.getScaleY());
 					} else {
 						Thread.sleep(950);
 						rotator.stop();
 						coinFlip.setRotate(180);
 
-						x = token_bottom_player.localToScene(token_bottom_player.getBoundsInLocal()).getCenterX()
+						x = tokenBottomPlayer.localToScene(tokenBottomPlayer.getBoundsInLocal()).getCenterX()
 								- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterX();
-						y = token_bottom_player.localToScene(token_bottom_player.getBoundsInLocal()).getCenterY()
+						y = tokenBottomPlayer.localToScene(tokenBottomPlayer.getBoundsInLocal()).getCenterY()
 								- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterY();
 
-						scaleCoin.setToX(token_bottom_player.getScaleX());
-						scaleCoin.setToY(token_bottom_player.getScaleY());
+						scaleCoin.setToX(tokenBottomPlayer.getScaleX());
+						scaleCoin.setToY(tokenBottomPlayer.getScaleY());
 					}
 
 					translateCoin.setByX(x);
@@ -265,14 +363,14 @@ public class BoardController {
 		double y = 0;
 
 		if (currentTurnSPlayer.equals(bottomPlayer)) {
-			x = token_bottom_player.localToScene(token_bottom_player.getBoundsInLocal()).getCenterX()
+			x = tokenBottomPlayer.localToScene(tokenBottomPlayer.getBoundsInLocal()).getCenterX()
 					- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterX();
-			y = token_bottom_player.localToScene(token_bottom_player.getBoundsInLocal()).getCenterY()
+			y = tokenBottomPlayer.localToScene(tokenBottomPlayer.getBoundsInLocal()).getCenterY()
 					- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterY();
 		} else {
-			x = token_top_player.localToScene(token_top_player.getBoundsInLocal()).getCenterX()
+			x = tokenTopPlayer.localToScene(tokenTopPlayer.getBoundsInLocal()).getCenterX()
 					- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterX();
-			y = token_top_player.localToScene(token_top_player.getBoundsInLocal()).getCenterY()
+			y = tokenTopPlayer.localToScene(tokenTopPlayer.getBoundsInLocal()).getCenterY()
 					- coinFlip.localToScene(coinFlip.getBoundsInLocal()).getCenterY();
 		}
 

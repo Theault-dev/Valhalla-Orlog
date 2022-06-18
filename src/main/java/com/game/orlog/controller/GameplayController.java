@@ -3,6 +3,7 @@ package com.game.orlog.controller;
 import java.util.ArrayList;
 import com.game.orlog.ValhallaOrlogApplication;
 import com.game.orlog.model.entity.Player;
+import com.game.orlog.model.enumClass.ActionEnum;
 import com.game.orlog.model.enumClass.EndGamePossibilitiesEnum;
 import com.game.orlog.model.enumClass.GamePhaseEnum;
 import com.game.orlog.model.items.Die;
@@ -57,41 +58,35 @@ public class GameplayController {
 			if (node.getId() == null) {
 				continue;
 			}
-			if (node.getId().equals("coinFlip")) {
-				((ImageView)node).setOnMousePressed(event -> {
-					//TODO change/remove
-					firstPlayer = nextPlayer(firstPlayer);
-					currentPlayer = firstPlayer;
-					rollDice(me);
-					boardController.setCurrentTurnSPlayer(currentPlayer);
-				});
-			} else if (node.getId().contains("die")) {
-				if (node.getId().contains("bottom")) {
-					node.getStyleClass().add("image-view-wrapper");
-					node.setOnMouseClicked(event -> {					    
-						if (gamePhase != GamePhaseEnum.DICE_SELECTION) {
-							return;
-						}
-						if (isSelectionDone) {
-							return;
-						}
-						for(Die die : me.getDice()) {
-							if (die == null) {
-								continue;
-							}
-							if (me.getDice().indexOf(die) != node.getId().charAt(3)-48) {
-								continue;
-							}
-							boardController.onDieClick(node);
-						}
-					});
-				}
+			if (!node.getId().contains("die")) {
+				continue;
 			}
+			if (!node.getId().contains("Bottom")) {
+				continue;
+			}
+			node.getStyleClass().add("image-view-wrapper");
+			node.setOnMouseClicked(event -> {					    
+				if (gamePhase != GamePhaseEnum.DICE_SELECTION) {
+					return;
+				}
+				if (isSelectionDone) {
+					return;
+				}
+				for(Die die : me.getDice()) {
+					if (die == null) {
+						continue;
+					}
+					if (me.getDice().indexOf(die)
+							!= node.getId().charAt(3)-48) {
+						continue;
+					}
+					boardController.onDieClick(node);
+				}
+			});
 		};
 
 		boardController.getValidateSelectionButton().setVisible(false);
 
-		//TODO it's a test
 		boardController.getValidateSelectionButton().setOnAction(event -> {
 			synchronized(playerStopEvent) {
 				isSelectionDone = true;
@@ -104,7 +99,6 @@ public class GameplayController {
 
 	
 	public void gameLoop() {
-		
 		Thread gameThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -134,12 +128,16 @@ public class GameplayController {
 		return new Thread(new Runnable() {
 			@Override
 			public void run() {
-				doATurn();
+				try {
+					doATurn();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}
 
-	public void doATurn() {
+	public void doATurn() throws InterruptedException {
 		while(gamePhase != GamePhaseEnum.IDLE) {
 			try {
 				Thread.sleep(1000);
@@ -149,19 +147,21 @@ public class GameplayController {
 		}
 	}
 
-	public void processToNextGamePhase() {
+	public void processToNextGamePhase() throws InterruptedException {
 		switch (gamePhase) {
 		case IDLE:
 			break;
 		case ROLL:
-			// TODO only when my turn
 			if (currentPlayer.equals(me)) {
 				if (currentPlayer.getRemainingRolls() == Player.MAX_ROLLS) {
 					currentPlayer = nextPlayer(currentPlayer);
 					if (currentPlayer.getRemainingRolls() == Player.MAX_ROLLS) {
 						gamePhase = gamePhase.next().next();
 					} else {
-						// TODO get infos from proxy in loop
+						//TODO while(gamePhase == opponentGamePhase){
+						// wait for proxy message
+						// opponent.getDice()
+						// }
 						gamePhase = gamePhase.next();
 					}
 				} else {
@@ -170,6 +170,18 @@ public class GameplayController {
 				gamePhase = gamePhase.next();
 			} else {
 				// TODO get infos from proxy in loop
+				// Player.getDice()
+				// getGamePhase()
+				//TODO while(gamePhase == opponentGamePhase){
+				// wait for proxy message
+				// opponent = proxy.opponent
+//				byte index = 0;
+//				for (Die opponenDie : opponent.getDice()) {
+//					boardController.setImageOnDie(opponent, opponenDie, index);
+//					index++;
+//				}
+				// }
+				//TODO deleter after proxy is implemented
 				currentPlayer.incrementRemainingThrows();
 				gamePhase = gamePhase.next();
 			}
@@ -189,6 +201,7 @@ public class GameplayController {
 				currentPlayer = nextPlayer(currentPlayer);
 			} else {
 				//TODO get infos from proxy in loop
+				// Player.getDiceToKeep()
 				gamePhase = gamePhase.previous();
 				currentPlayer = nextPlayer(currentPlayer);
 			}
@@ -197,8 +210,16 @@ public class GameplayController {
 			//TODO
 			gamePhase = gamePhase.next();
 			break;
-		case RESOLVE:
-			//TODO
+		case RESOLVE: //steal golds
+			updatePlayerGoldenDice(me);
+			//TODO test. Replace by proxy call
+			opponent.addGold((byte) 12);
+			
+			boardController.refreshGold();
+			Thread.sleep(1000);
+			
+			stealGold();
+			boardController.refreshGold();
 			gamePhase = gamePhase.next();
 			break;
 		case FIGHT:
@@ -223,7 +244,7 @@ public class GameplayController {
 			currentPlayer = firstPlayer = nextPlayer(firstPlayer);
 			boardController.setCurrentTurnSPlayer(currentPlayer);
 			
-			boardController.resetHighlitedDice();
+			boardController.resetHighlightedDice();
 			
 			gamePhase = gamePhase.next();
 		case END_GAME:
@@ -246,12 +267,67 @@ public class GameplayController {
 		}
 	}
 	
+	/**
+	 * Calculates and proceed to the stealing for each player.
+	 * Starts with the player with the token.
+	 * In case a player don't have enough gold to be stolen,
+	 * the maximum gold that he possess will be stolen.
+	 * In case the amount is 0, no gold will be stolen.
+	 */
+	private void stealGold() {
+		byte goldToSteal = 0;
+		byte maxGoldToSteal = 0;
+		
+		Player j1 = firstPlayer;
+		Player j2 = null;
+		if (currentPlayer.equals(me)) {
+			j2 = opponent;
+		} else {
+			j2 = me;
+		}
+		
+		maxGoldToSteal = j2.getGold();
+		for (Die die : j1.getDiceToKeep()) {
+			if (die == null) continue;
+			if (die.getVisibleFace().getFace() == ActionEnum.HAND) {
+				goldToSteal++;
+			}
+		}
+		if (goldToSteal > maxGoldToSteal) {
+			goldToSteal = maxGoldToSteal;
+		}
+		j1.addGold(goldToSteal);
+		j2.removeGold(goldToSteal);
+		
+		goldToSteal = 0;
+		maxGoldToSteal = j1.getGold();
+		for (Die die : j2.getDiceToKeep()) {
+			if (die == null) continue;
+			if (die.getVisibleFace().getFace() == ActionEnum.HAND) {
+				goldToSteal++;
+			}
+		}
+		if (goldToSteal > maxGoldToSteal) {
+			goldToSteal = maxGoldToSteal;
+		}
+		j2.addGold(goldToSteal);
+		j1.removeGold(goldToSteal);
+	}
+	
+	private void updatePlayerGoldenDice(Player player) {
+		for(Die die : player.getDiceToKeep()) {
+			if (die.getVisibleFace().getIsSpecial()) {
+				player.incrementGold();
+			}
+		}
+	}
+	
 	private void selectAllTheRemainingDiceToKeep(ArrayList<Die> dice) {
 		for (byte index = 0; index < me.getDice().size(); index++) {
 			if (me.getDice().get(index) == null) {
 				continue;
 			}
-			for(BorderPane key : boardController.getMapDice().keySet()) {
+			for(BorderPane key : boardController.getmapBottomDice().keySet()) {
 				if (index != key.getId().charAt(3)-48) {
 					continue;
 				}
@@ -265,7 +341,6 @@ public class GameplayController {
 
 	private void selectDiceTokeep(ArrayList<Die> dice) {
 		//TODO
-
 		isSelectionDone = false;
 		synchronized (playerStopEvent) {
 			while(!isSelectionDone) {
@@ -279,11 +354,11 @@ public class GameplayController {
 			if (me.getDice().get(index) == null) {
 				continue;
 			}
-			for(BorderPane key : boardController.getMapDice().keySet()) {
+			for(BorderPane key : boardController.getmapBottomDice().keySet()) {
 				if (index != key.getId().charAt(3)-48) {
 					continue;
 				}
-				boolean isSelected = (boolean) boardController.getMapDice().get(key);
+				boolean isSelected = (boolean) boardController.getmapBottomDice().get(key);
 				if (isSelected) {
 					me.getDiceToKeep().set(index, me.getDice().get(index));
 					me.getDice().set(index, null);

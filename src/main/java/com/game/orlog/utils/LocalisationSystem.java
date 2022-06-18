@@ -59,13 +59,13 @@ public class LocalisationSystem {
 	 * 
 	 * @param key The key from the dictionnary file.
 	 * @return The value corresponding with the current language
-	 * and the key.
+	 * and the key or {@code null} if not found.
 	 */
 	public static String getLocalisedValue(String key) {
 		if (!isInit) {
 			init();
 		}
-		String value = key;
+		String value = null;
 		switch (language) {
 		case FRENCH:
 			value = localisedFR.get(key);
@@ -74,10 +74,6 @@ public class LocalisationSystem {
 		default:
 			value = localisedEN.get(key);
 			break;
-		}
-		
-		if (value == null) {
-			value = key;
 		}
 		
 		return value;
@@ -111,8 +107,12 @@ public class LocalisationSystem {
 			if (node.getId() == null || !(node instanceof Labeled)) {
 				continue;
 			}
-			((Labeled) node).setText(LocalisationSystem
-					.getLocalisedValue(node.getId()));
+			String text = LocalisationSystem
+									.getLocalisedValue(node.getId());
+			if (text != null) {
+				((Labeled) node).setText(LocalisationSystem
+						.getLocalisedValue(node.getId()));
+			}
 		}
 	}
 	

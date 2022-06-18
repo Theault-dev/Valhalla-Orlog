@@ -14,7 +14,7 @@ public class SettingsController extends PopupController{
 	public void initialize() {
 		settings_languages_list.getItems().add("English");
 		settings_languages_list.getItems().add("Français");
-		settings_languages_list.setValue("Anglais");
+		settings_languages_list.setValue("English");
 		
 		switch (LocalisationSystem.language) {
 		case FRENCH: {

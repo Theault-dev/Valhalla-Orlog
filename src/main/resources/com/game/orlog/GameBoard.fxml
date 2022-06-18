@@ -59,27 +59,27 @@
 				<RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-            <BorderPane fx:id="healthTopPlayer" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
-               <center>
-      				<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-      					<image>
-      						<Image url="@img/lifePoints/15.png" />
-      					</image>
-      				</ImageView>
-               </center>
-            </BorderPane>
-            <BorderPane fx:id="healthBottomPlayer" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
-               <center>
-      				<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-      					<image>
-      						<Image url="@img/lifePoints/15.png" />
-      					</image>
-      				</ImageView>
-               </center>
-            </BorderPane>
+				<BorderPane fx:id="healthTopPlayer" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+					<center>
+						<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+							<image>
+								<Image url="@img/lifePoints/15.png" />
+							</image>
+						</ImageView>
+					</center>
+				</BorderPane>
+				<BorderPane fx:id="healthBottomPlayer" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+					<center>
+						<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+							<image>
+								<Image url="@img/lifePoints/15.png" />
+							</image>
+						</ImageView>
+					</center>
+				</BorderPane>
 				<HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="4">
 					<children>
-						<Label fx:id="name_bottom_player" text="[Player name]">
+						<Label fx:id="nameBottomPlayer" text="[Player name]">
 							<padding>
 								<Insets right="10.0" />
 							</padding>
@@ -88,61 +88,97 @@
 				</HBox>
 				<HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2147483647">
 					<children>
-						<Label fx:id="name_top_player" alignment="CENTER_RIGHT" text="[Player name]" />
+						<Label fx:id="nameTopPlayer" alignment="CENTER_RIGHT" text="[Player name]" />
 					</children>
 				</HBox>
 				<HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
 					<children>
-						<ImageView fx:id="die5_top_player" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@img/common/empty.jpg" />
-							</image>
-						</ImageView>
-						<ImageView fx:id="die4_top_player" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@img/common/empty.jpg" />
-							</image>
-						</ImageView>
-						<ImageView fx:id="die3_top_player" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@img/common/empty.jpg" />
-							</image>
-						</ImageView>
-						<ImageView fx:id="die2_top_player" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@img/common/empty.jpg" />
-							</image>
-						</ImageView>
-						<ImageView fx:id="die1_top_player" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@img/common/empty.jpg" />
-							</image>
-						</ImageView>
-						<ImageView fx:id="die0_top_player" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@img/common/empty.jpg" />
-							</image>
-						</ImageView>
-						<ImageView fx:id="god2_top_player" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@img/gods/color/vidar.jpg" />
-							</image>
-						</ImageView>
-						<ImageView fx:id="god1_top_player" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@img/gods/color/vidar.jpg" />
-							</image>
-						</ImageView>
-						<ImageView fx:id="god0_top_player" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@img/gods/color/vidar.jpg" />
-							</image>
-						</ImageView>
+						<BorderPane fx:id="die0TopPlayer" prefHeight="200.0" prefWidth="200.0">
+							<center>
+								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+									<image>
+										<Image url="@img/common/empty.jpg" />
+									</image>
+								</ImageView>
+							</center>
+						</BorderPane>
+						<BorderPane fx:id="die1TopPlayer" prefHeight="200.0" prefWidth="200.0">
+							<center>
+								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+									<image>
+										<Image url="@img/common/empty.jpg" />
+									</image>
+								</ImageView>
+							</center>
+						</BorderPane>
+						<BorderPane fx:id="die2TopPlayer" prefHeight="200.0" prefWidth="200.0">
+							<center>
+								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+									<image>
+										<Image url="@img/common/empty.jpg" />
+									</image>
+								</ImageView>
+							</center>
+						</BorderPane>
+						<BorderPane fx:id="die3TopPlayer" prefHeight="200.0" prefWidth="200.0">
+							<center>
+								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+									<image>
+										<Image url="@img/common/empty.jpg" />
+									</image>
+								</ImageView>
+							</center>
+						</BorderPane>
+						<BorderPane fx:id="die4TopPlayer" prefHeight="200.0" prefWidth="200.0">
+							<center>
+								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+									<image>
+										<Image url="@img/common/empty.jpg" />
+									</image>
+								</ImageView>
+							</center>
+						</BorderPane>
+						<BorderPane fx:id="die5TopPlayer" prefHeight="200.0" prefWidth="200.0">
+							<center>
+								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+									<image>
+										<Image url="@img/common/empty.jpg" />
+									</image>
+								</ImageView>
+							</center>
+						</BorderPane>
+						<BorderPane fx:id="god2TopPlayer" prefHeight="200.0" prefWidth="200.0">
+							<center>
+								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+									<image>
+										<Image url="@img/gods/color/vidar.jpg" />
+									</image>
+								</ImageView>
+							</center>
+						</BorderPane>
+						<BorderPane fx:id="god1TopPlayer" prefHeight="200.0" prefWidth="200.0">
+							<center>
+								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+									<image>
+										<Image url="@img/gods/color/vidar.jpg" />
+									</image>
+								</ImageView>
+							</center>
+						</BorderPane>
+						<BorderPane fx:id="god0TopPlayer" prefHeight="200.0" prefWidth="200.0">
+							<center>
+								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+									<image>
+										<Image url="@img/gods/color/vidar.jpg" />
+									</image>
+								</ImageView>
+							</center>
+						</BorderPane>
 					</children>
 				</HBox>
 				<HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
 					<children>
-						<BorderPane fx:id="god0_bottom_player" prefHeight="50.0" prefWidth="32.0">
+						<BorderPane fx:id="god0BottomPlayer" prefHeight="50.0" prefWidth="32.0">
 							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
 									<image>
@@ -151,7 +187,7 @@
 								</ImageView>
 							</center>
 						</BorderPane>
-						<BorderPane fx:id="god1_bottom_player" prefHeight="50.0" prefWidth="35.0">
+						<BorderPane fx:id="god1BottomPlayer" prefHeight="50.0" prefWidth="35.0">
 							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
 									<image>
@@ -160,7 +196,7 @@
 								</ImageView>
 							</center>
 						</BorderPane>
-						<BorderPane fx:id="god2_bottom_player" prefHeight="50.0" prefWidth="45.0">
+						<BorderPane fx:id="god2BottomPlayer" prefHeight="50.0" prefWidth="45.0">
 							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
 									<image>
@@ -169,7 +205,7 @@
 								</ImageView>
 							</center>
 						</BorderPane>
-						<BorderPane fx:id="die0_bottom_player" prefHeight="200.0" prefWidth="200.0">
+						<BorderPane fx:id="die0BottomPlayer" prefHeight="200.0" prefWidth="200.0">
 							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
 									<image>
@@ -178,7 +214,7 @@
 								</ImageView>
 							</center>
 						</BorderPane>
-						<BorderPane fx:id="die1_bottom_player" prefHeight="200.0" prefWidth="200.0">
+						<BorderPane fx:id="die1BottomPlayer" prefHeight="200.0" prefWidth="200.0">
 							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
 									<image>
@@ -187,7 +223,7 @@
 								</ImageView>
 							</center>
 						</BorderPane>
-						<BorderPane fx:id="die2_bottom_player" prefHeight="200.0" prefWidth="200.0">
+						<BorderPane fx:id="die2BottomPlayer" prefHeight="200.0" prefWidth="200.0">
 							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
 									<image>
@@ -196,7 +232,7 @@
 								</ImageView>
 							</center>
 						</BorderPane>
-						<BorderPane fx:id="die3_bottom_player" prefHeight="200.0" prefWidth="200.0">
+						<BorderPane fx:id="die3BottomPlayer" prefHeight="200.0" prefWidth="200.0">
 							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
 									<image>
@@ -205,7 +241,7 @@
 								</ImageView>
 							</center>
 						</BorderPane>
-						<BorderPane fx:id="die4_bottom_player" prefHeight="200.0" prefWidth="200.0">
+						<BorderPane fx:id="die4BottomPlayer" prefHeight="200.0" prefWidth="200.0">
 							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
 									<image>
@@ -214,7 +250,7 @@
 								</ImageView>
 							</center>
 						</BorderPane>
-						<BorderPane fx:id="die5_bottom_player" prefHeight="200.0" prefWidth="200.0">
+						<BorderPane fx:id="die5BottomPlayer" prefHeight="200.0" prefWidth="200.0">
 							<center>
 								<ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
 									<image>
@@ -229,62 +265,62 @@
 					<children>
 						<HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
 							<children>
-								<ImageView fx:id="center12_top_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center12TopPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center11_top_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center11TopPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center10_top_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center10TopPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center9_top_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center9TopPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center8top_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center8topPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center7_top_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center7TopPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center6_top_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center6TopPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center5_top_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center5TopPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center4_top_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center4TopPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center3_top_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center3TopPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center2_top_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center2TopPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center12_top_player1" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center12TopPlayer1" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
@@ -293,62 +329,62 @@
 						</HBox>
 						<HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
 							<children>
-								<ImageView fx:id="center1_bottom_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center1BottomPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center2_bottom_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center2BottomPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center3_bottom_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center3BottomPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center4_bottom_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center4BottomPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center5_bottom_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center5BottomPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center6_bottom_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center6BottomPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center7_bottom_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center7BottomPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center8_bottom_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center8BottomPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center9_bottom_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center9BottomPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center10_bottom_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center10BottomPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center11_bottom_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center11BottomPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
 								</ImageView>
-								<ImageView fx:id="center12_bottom_player" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+								<ImageView fx:id="center12BottomPlayer" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@img/common/empty.jpg" />
 									</image>
@@ -357,17 +393,37 @@
 						</HBox>
 					</children>
 				</VBox>
-				<ImageView fx:id="token_bottom_player" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+				<ImageView fx:id="tokenBottomPlayer" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
 					<image>
 						<Image url="@img/common/token.jpg" />
 					</image>
 				</ImageView>
-				<ImageView fx:id="token_top_player" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+				<ImageView fx:id="tokenTopPlayer" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
 					<image>
 						<Image url="@img/common/token.jpg" />
 					</image>
 				</ImageView>
-            <Button fx:id="validateSelectionButton" mnemonicParsing="false" text="validate" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+				<Button fx:id="validateSelectionButton" mnemonicParsing="false" text="validate" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <image>
+                  <Image url="@img/common/gold.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="goldTopPlayer" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets top="50.0" />
+               </GridPane.margin>
+            </Text>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <image>
+                  <Image url="@img/common/gold.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="goldBottomPlayer" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="50.0" />
+               </GridPane.margin>
+            </Text>
 			</children>
 		</GridPane>
 		<ImageView fx:id="coinFlip" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">

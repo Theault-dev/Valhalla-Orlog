@@ -15,6 +15,13 @@ public class Divinity {
 		this.effect = effect;
 		this.isAvailable = true;
 	}
+	
+	public final String getName() {
+		return name;
+	}
+	public final Effect getEffect() {
+		return effect;
+	}
 
 	public final boolean isAvailable() {
 		return isAvailable;

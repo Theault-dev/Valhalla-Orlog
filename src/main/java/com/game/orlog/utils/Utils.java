@@ -67,6 +67,18 @@ public class Utils {
 		}
 		return ALL_DIVINITIES;
 	}
+	
+	public static Divinity getDivinityByName(String name) {
+		for (Divinity divinity : getAllDivinities()) {
+			if (divinity.getName().toLowerCase().equals(name.toLowerCase())) {
+				divinity.setAvailable(true);
+				return divinity;
+			}
+		}
+		
+		return null;
+	}
+	
 	/**
 	 * Read a JSONFile given in parameter
 	 * @param file JSON file

@@ -77,4 +77,13 @@ public class Player {
 	public final byte getGold() {
 		return gold;
 	}
+	public void addGold(byte gold) {
+		this.gold += gold;
+	}
+	public void removeGold(byte gold) {
+		this.gold -= gold;
+	}
+	public void incrementGold() {
+		gold++;
+	}
 }
