@@ -15,7 +15,6 @@ public class ValhallaOrlogApplication extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
 		ValhallaOrlogApplication.stage = stage;
-		// TODO proper start
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass()
 				.getResource("ValhallaOrlogMain.fxml"));
 		Scene scene = new Scene(fxmlLoader.load());

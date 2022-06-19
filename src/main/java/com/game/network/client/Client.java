@@ -4,6 +4,8 @@ import com.game.network.client.logger.ClientLogger;
 import com.game.network.communication.InstructionType;
 import com.game.network.communication.JSONInstruction;
 import com.game.network.server.Server;
+import com.game.network.server.router.action.get.GetTypes;
+import com.game.proxy.PlayerProxy;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -53,6 +55,8 @@ public class Client {
         Socket s = null;
         try {
             s = new Socket(Server.ADRESS, Server.PORT);
+            _output = new OutputStreamWriter(s.getOutputStream());
+            _input = new BufferedReader(new InputStreamReader(s.getInputStream()));
         } catch (IOException e) {
             ClientLogger.getLogger().log(System.Logger.Level.ERROR, "Error while connecting to the server : " + e);
             throw e;
@@ -76,5 +80,20 @@ public class Client {
             ClientLogger.getLogger().log(System.Logger.Level.ERROR, "Error while communicating with the server : " + e);
             throw e;
         }
+    }
+
+    public PlayerProxy getOpponent() {
+        JSONInstruction getOpponent = new JSONInstruction(InstructionType.GET);
+        getOpponent.put("getType", GetTypes.OPPONENT);
+        getOpponent.put("token", this.getToken());
+        JSONObject getOpponentJson = null;
+        try {
+            System.out.println("test");
+            getOpponentJson = sendDataToServer(getOpponent);
+            System.out.println(getOpponentJson);
+        } catch (IOException e) {
+            System.out.println("erreur : " + e);
+        }
+        return new PlayerProxy(null, this);
     }
 }

@@ -317,26 +317,5 @@ public class GameplayController {
 		} else {
 			return me;
 		}
-
-		//		//TODO it's a test
-		//		Thread th = new Thread() {
-		//			public void run() {
-		//				try {
-		//					while(true) {
-		//					sleep(4000);
-		//						if (firstPlayer.equals(me)) {
-		//							firstPlayer = opponent;
-		//						} else {
-		//							firstPlayer = me;
-		//						}
-		//						System.out.println("change");
-		//						boardController.setCurrentTurnSPlayer(firstPlayer);
-		//					}
-		//				} catch (InterruptedException e) {
-		//					e.printStackTrace();
-		//				}
-		//			}
-		//		};
-		//		th.start();
 	}
 }

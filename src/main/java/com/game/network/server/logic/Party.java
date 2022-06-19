@@ -1,7 +1,10 @@
 package com.game.network.server.logic;
 
+import com.game.orlog.controller.GameplayController;
+import com.game.orlog.model.entity.Player;
+
 public class Party {
-    String tokenJ1, tokenJ2;
+    private String tokenJ1, tokenJ2;
 
     public Party(String tokenJ1, String tokenJ2) {
         this.tokenJ1 = tokenJ1;

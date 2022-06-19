@@ -2,7 +2,8 @@ package com.game.network.server.router;
 
 public enum RouterActionType {
     DEFAULT,
-    NEW_PLAYER;
+    NEW_PLAYER,
+    GET;
 
     public static RouterActionType fromString(String str) throws Exception {
         for (RouterActionType type :

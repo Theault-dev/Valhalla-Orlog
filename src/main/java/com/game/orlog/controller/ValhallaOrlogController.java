@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.game.network.client.Client;
 import com.game.orlog.ValhallaOrlogApplication;
 import com.game.orlog.model.entity.Player;
 import com.game.orlog.utils.CSVLoader;
 import com.game.orlog.utils.LocalisationSystem;
 import com.game.orlog.utils.PopupWindow;
+import com.game.proxy.PlayerProxy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -85,9 +87,11 @@ public class ValhallaOrlogController {
 				.toExternalForm());
 
 		//load the controller. Must be done AFTER the setScene
-		//TODO instanciate players
-		Player me = new Player("SAINT Bernard de La Villardière", null);
-		Player opponent = new Player("Titouan le gueu des prairies", null);
+		String meName = "SAINT Bernard de La Villardière";
+		Player me = new Player(meName, null);
+
+		Client c = new Client("Proxy game with " + meName);
+		Player opponent = c.getOpponent();
 		gameplayController = new GameplayController(me, opponent, view);
 		loader.setController(gameplayController);
 	}

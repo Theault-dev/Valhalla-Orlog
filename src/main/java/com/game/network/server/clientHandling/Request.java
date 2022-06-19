@@ -3,8 +3,10 @@ package com.game.network.server.clientHandling;
 import com.game.network.communication.JSONInstruction;
 import com.game.network.server.logger.ServerLogger;
 import com.game.network.server.router.RouterActionType;
+import com.game.network.server.router.action.get.GetRouterAction;
 import com.game.network.server.router.action.NewPlayerRouterAction;
 import com.game.network.server.router.action.RouterAction;
+import com.game.network.server.router.action.get.GetTypes;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -18,13 +20,21 @@ public class Request {
     private final JSONObject content;
     private final Socket associatedSocket;
     private OutputStreamWriter _output;
+    private boolean keepAlive;
 
     public Request(JSONObject content, Socket associatedSocket) {
         this.content = content;
         this.associatedSocket = associatedSocket;
+        keepAlive = false;
     }
 
-    private OutputStreamWriter get_output() throws IOException {
+    public Request(JSONObject content, Socket associatedSocket, boolean keepAlive) {
+        this.content = content;
+        this.associatedSocket = associatedSocket;
+        this.keepAlive = keepAlive;
+    }
+
+    public OutputStreamWriter get_output() throws IOException {
         if (_output == null) {
             _output = new OutputStreamWriter(associatedSocket.getOutputStream(), StandardCharsets.UTF_8);
         }
@@ -40,22 +50,27 @@ public class Request {
                 case INIT:
                     routerAction = initRoutine(instruction);
                     break;
+                case GET:
+                    routerAction = getRoutine(instruction);
+                    break;
             }
         } catch (Exception e) {
             ServerLogger.getLogger().log(System.Logger.Level.ERROR, "Error while processing client ("+ associatedSocket +") request : " + e.getMessage());
         }
         // closing connection to client
-        try {
-            ServerLogger.getLogger().log(System.Logger.Level.WARNING, "Closing connection to client " + associatedSocket);
-            associatedSocket.close();
-        } catch (Exception e) {
-            ServerLogger.getLogger().log(System.Logger.Level.ERROR, "Error while closing connection to client ("+ associatedSocket +") request : " + e.getMessage());
+        if (!keepAlive) {
+            try {
+                ServerLogger.getLogger().log(System.Logger.Level.WARNING, "Closing connection to client " + associatedSocket);
+                associatedSocket.close();
+            } catch (Exception e) {
+                ServerLogger.getLogger().log(System.Logger.Level.ERROR, "Error while closing connection to client ("+ associatedSocket +") request : " + e.getMessage());
+            }
         }
 
         return routerAction;
     }
 
-    private void send(JSONObject json) throws IOException {
+    public void send(JSONObject json) throws IOException {
         get_output().write(json.toString());
         get_output().write('\n');
         get_output().flush();
@@ -82,5 +97,15 @@ public class Request {
         byte[] token = new byte[16];
         secureRandom.nextBytes(token);
         return Base64.getUrlEncoder().withoutPadding().encodeToString(token); //base64 encoding
+    }
+
+    private RouterAction getRoutine(JSONInstruction instruction) throws Exception {
+        keepAlive = true;
+        return new GetRouterAction(
+                RouterActionType.GET,
+                instruction.getString("token"),
+                GetTypes.fromString(instruction.getString("getType")),
+                this
+        );
     }
 }
