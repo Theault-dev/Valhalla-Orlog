@@ -1,13 +1,19 @@
 package com.game.orlog.controller;
 
 import java.util.ArrayList;
+import java.util.Map;
+
 import com.game.orlog.ValhallaOrlogApplication;
+import com.game.orlog.model.entity.Divinity;
 import com.game.orlog.model.entity.Player;
 import com.game.orlog.model.enumClass.ActionEnum;
+import com.game.orlog.model.enumClass.AffectEnum;
 import com.game.orlog.model.enumClass.EndGamePossibilitiesEnum;
 import com.game.orlog.model.enumClass.GamePhaseEnum;
+import com.game.orlog.model.enumClass.OnWhoEnum;
 import com.game.orlog.model.items.Die;
 import com.game.orlog.utils.LocalisationSystem;
+import com.game.orlog.utils.Utils;
 
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
@@ -42,6 +48,12 @@ public class GameplayController {
 
 	private boolean isSelectionDone;
 	private Object playerStopEvent = new Object();
+	
+
+	Map<String, Byte> MeSelectedFavor = boardController.getSelectedGodAttackRank();
+	Divinity MeSelectedDivinity = null;
+	Map<String, Byte> opponentSelectedFavor = boardController.getSelectedGodAttackRank();
+	Divinity opponentSelectedDivinity = null;
 
 
 	public GameplayController(Player me, Player opponent, GridPane view) {
@@ -215,7 +227,20 @@ public class GameplayController {
 			}
 			break;
 		case FAVORS_SELECTION:
-			//TODO
+			if (MeSelectedFavor.size() == 1) {
+				for (Divinity divinity : me.getDivinities()) {
+					if (!divinity.getName()
+							.toLowerCase()
+							.equals(MeSelectedFavor.keySet().toArray()[0])) {
+						continue;
+					}
+					MeSelectedDivinity = divinity;
+					break;
+				}
+			}
+			if (MeSelectedDivinity != null) {
+				System.out.println(MeSelectedDivinity.getEffect().getWhen());
+			}
 			gamePhase = gamePhase.next();
 			break;
 		case RESOLVE: //steal golds & place dice in center
@@ -238,7 +263,16 @@ public class GameplayController {
 			break;
 		case FIGHT:
 			//TODO need dice from opponent proxy
-			fight();
+			if (MeSelectedDivinity != null
+					&& opponentSelectedDivinity != null) {
+				fight(MeSelectedDivinity, opponentSelectedDivinity);
+			} else if (MeSelectedDivinity != null) {
+				fight(MeSelectedDivinity, null);
+			} else if (MeSelectedDivinity != null) {
+				fight(null, opponentSelectedDivinity);
+			} else {
+				fight(null, null);
+			}
 			gamePhase = gamePhase.next();
 			break;
 		case END_TURN:
@@ -283,7 +317,7 @@ public class GameplayController {
 	 * Calculates health point for each player after
 	 * the dice's battle.
 	 */
-	private void fight() {
+	private void fight(Divinity meDivinity, Divinity opponentDivinity) {
 		byte meAxe = 0;
 		byte meHelmet = 0;
 		byte meArrow = 0;
@@ -337,6 +371,28 @@ public class GameplayController {
 				break;
 			}
 		}
+		if (meDivinity != null) {
+			if (meDivinity.getEffect().getOnWho() == OnWhoEnum.PLAYER) {
+				//TODO
+				for (AffectEnum affect : meDivinity.getEffect().getAffect()) {
+					switch (affect) {
+					case ARROW:
+						break;
+					case AXE:
+						break;
+					default:
+						break;
+					}
+				}
+			} else {
+				//TODO
+			}
+		}
+		if (opponentDivinity != null) {
+			//TODO
+		}
+		
+		
 		if (opponentArrow - meShield > 0) {
 			meDamage += opponentArrow - meShield;
 		}

@@ -48,7 +48,7 @@ public class BoardController {
 	private ArrayList<Node> elementsWithId;
 
 	private ImageView coinFlip;
-	
+
 	private ImageView tokenTopPlayer;
 	private BorderPane healthTopPlayer;
 	private Text goldTopPlayer;
@@ -60,7 +60,9 @@ public class BoardController {
 	private Map<BorderPane, Boolean> mapTopDice;
 	private BorderPane[] bottomDivinities;
 	private BorderPane[] topDivinities;
-	
+
+	private Map<String, Byte> selectedGodAttackRank = new HashMap<>();
+
 	private Button validateSelectionButton;
 
 	public BoardController(Player bottomPlayer, Player topPlayer, GridPane view) {
@@ -72,12 +74,12 @@ public class BoardController {
 		topDivinities = new BorderPane[3];
 
 		board = new Board(topPlayer, bottomPlayer);
-		
+
 		populateNode();
 
 		setImagesOnBottomPlayerGod();
 		//TODO uncomment when proxy updated TopPlayer
-//		setImagesOnTopPlayerGod();
+		setImagesOnTopPlayerGod();
 
 		tokenTopPlayer.setVisible(false);
 		tokenBottomPlayer.setVisible(false);
@@ -119,11 +121,14 @@ public class BoardController {
 				if (node.getId().contains("BottomPlayer")) {
 					byte index = (byte) (node.getId().charAt(3)-48);
 					bottomDivinities[index] = (BorderPane) node;
-					((BorderPane)node).setOnMouseClicked(event -> {
-						onGodClicked((BorderPane) node);
-					});
 				}
-				//TODO TopPlayer
+				if (node.getId().contains("TopPlayer")) {
+					byte index = (byte) (node.getId().charAt(3)-48);
+					topDivinities[index] = (BorderPane) node;
+				}
+				((BorderPane)node).setOnMouseClicked(event -> {
+					onGodClicked((BorderPane) node);
+				});
 			} else if (node.getId().equals("goldBottomPlayer")) {
 				goldBottomPlayer = (Text) node;
 			} else if (node.getId().equals("goldTopPlayer")) {
@@ -135,7 +140,7 @@ public class BoardController {
 		};
 		refreshGold();
 	}
-	
+
 	public void moveSelectedDiceToMiddle() {
 		byte meAxe = 0;
 		byte meHelmet = 0;
@@ -145,7 +150,7 @@ public class BoardController {
 		byte opponentHelmet = 0;
 		byte opponentArrow = 0;
 		byte opponentShield = 0;
-		
+
 		for (Die die : bottomPlayer.getDiceToKeep()) {
 			if (die == null) {
 				continue;
@@ -195,7 +200,7 @@ public class BoardController {
 			if (!node.getId().contains("center")) {
 				continue;
 			}
-			
+
 			byte indexImage = (byte) (node.getId().charAt(6)-48);
 			if (node.getId().charAt(7)-48 < 9) {
 				indexImage = (byte) (node.getId().charAt(7)-48 + 9);
@@ -207,24 +212,24 @@ public class BoardController {
 					path = "img/common/axe.jpg";
 					needUpdate = true;
 				} else if (indexImage <= Math.max(meAxe, opponentHelmet)
-										 + meArrow
-						   && indexImage > Math.max(meAxe, opponentHelmet)) {
+						+ meArrow
+						&& indexImage > Math.max(meAxe, opponentHelmet)) {
 					path = "img/common/arrow.jpg";
 					needUpdate = true;
 				} else if (indexImage <= Math.max(meAxe, opponentHelmet)
-										 + Math.max(meArrow, opponentShield)
-										 + meShield
-						   && indexImage > Math.max(meAxe, opponentHelmet)
-						   				   + Math.max(meArrow, opponentShield)) {
+						+ Math.max(meArrow, opponentShield)
+						+ meShield
+						&& indexImage > Math.max(meAxe, opponentHelmet)
+						+ Math.max(meArrow, opponentShield)) {
 					path = "img/common/shield.jpg";
 					needUpdate = true;
 				} else if (indexImage <= Math.max(meAxe, opponentHelmet)
-										 + Math.max(meArrow, opponentShield)
-										 + Math.max(meShield, opponentArrow)
-										 + meHelmet
-						   && indexImage > Math.max(meAxe, opponentHelmet)
-						   				   + Math.max(meArrow, opponentShield)
-						   				   + Math.max(meShield, opponentArrow)) {
+						+ Math.max(meArrow, opponentShield)
+						+ Math.max(meShield, opponentArrow)
+						+ meHelmet
+						&& indexImage > Math.max(meAxe, opponentHelmet)
+						+ Math.max(meArrow, opponentShield)
+						+ Math.max(meShield, opponentArrow)) {
 					path = "img/common/helmet.jpg";
 					needUpdate = true;
 				}
@@ -233,29 +238,29 @@ public class BoardController {
 					path = "img/common/helmet.jpg";
 					needUpdate = true;
 				} else if (indexImage <= Math.max(meAxe, opponentHelmet)
-								  + opponentShield
-					&& indexImage > Math.max(meAxe, opponentHelmet)) {
+						+ opponentShield
+						&& indexImage > Math.max(meAxe, opponentHelmet)) {
 					path = "img/common/shield.jpg";
 					needUpdate = true;
 				} else if (indexImage <= Math.max(meAxe, opponentHelmet)
-										 + Math.max(meArrow, opponentShield)
-										 + opponentArrow
-						   && indexImage > Math.max(meAxe, opponentHelmet)
-						   				   + Math.max(meArrow, opponentShield)) {
+						+ Math.max(meArrow, opponentShield)
+						+ opponentArrow
+						&& indexImage > Math.max(meAxe, opponentHelmet)
+						+ Math.max(meArrow, opponentShield)) {
 					path = "img/common/arrow.jpg";
 					needUpdate = true;
 				} else if (indexImage <= Math.max(meAxe, opponentHelmet)
-										 + Math.max(meArrow, opponentShield)
-										 + Math.max(meShield, opponentArrow)
-										 + opponentAxe
-						   && indexImage > Math.max(meAxe, opponentHelmet)
-						   				   + Math.max(meArrow, opponentShield)
-						   				   + Math.max(meShield, opponentArrow)) {
+						+ Math.max(meArrow, opponentShield)
+						+ Math.max(meShield, opponentArrow)
+						+ opponentAxe
+						&& indexImage > Math.max(meAxe, opponentHelmet)
+						+ Math.max(meArrow, opponentShield)
+						+ Math.max(meShield, opponentArrow)) {
 					path = "img/common/axe.jpg";
 					needUpdate = true;
 				}
 			}
-			
+
 			if (needUpdate) {
 				URL url = ValhallaOrlogApplication.class.getResource(path);
 				((ImageView)node).setImage(new Image(url.toExternalForm()));
@@ -263,7 +268,7 @@ public class BoardController {
 			}
 		}
 	}
-	
+
 	public void hideMiddleDice() {
 		for (Node node : elementsWithId) {
 			if (node.getId() == null) {
@@ -275,7 +280,7 @@ public class BoardController {
 			node.setVisible(false);
 		}
 	}
-	
+
 	/**
 	 * Set The image for the health of a player.
 	 * 
@@ -291,10 +296,11 @@ public class BoardController {
 			((ImageView) healthBottomPlayer.getCenter()).setImage(new Image(url.toExternalForm()));
 		}
 	}
-	
+
 	public Map<BorderPane, Boolean> getmapBottomDice() {
 		return mapBottomDice;
 	}
+	
 	public Button getValidateSelectionButton() {
 		return validateSelectionButton;
 	}
@@ -303,15 +309,15 @@ public class BoardController {
 		goldTopPlayer.setText(((Byte)topPlayer.getGold()).toString());
 		goldBottomPlayer.setText(((Byte)bottomPlayer.getGold()).toString());
 	}
-	
+
 	public void setImagesOnBottomPlayerGod() {
 		byte index = 0;
 		for (BorderPane node : bottomDivinities) {
 			String path = "img/gods/color/" + bottomPlayer
 					.getDivinities()
-					.get(index)
-					.getName()
-					.toLowerCase();
+			.get(index)
+			.getName()
+			.toLowerCase();
 			path = path.concat(".jpg");
 			URL url = ValhallaOrlogApplication.class.getResource(path);
 			((ImageView)((BorderPane) node).getCenter()).setImage(new Image(url.toExternalForm()));
@@ -319,7 +325,7 @@ public class BoardController {
 			index++;
 		}
 	}
-	
+
 	public void setImagesOnTopPlayerGod() {
 		byte index = 0;
 		for (BorderPane node : topDivinities) {
@@ -335,7 +341,7 @@ public class BoardController {
 			index++;
 		}
 	}
-	
+
 	/**
 	 * Set The image for the dice of a player.
 	 * 
@@ -380,26 +386,28 @@ public class BoardController {
 		for (BorderPane god : bottomDivinities) {
 			if (god.equals(node)) {
 				String path = ((ImageView)god.getCenter()).getImage()
-														  .getUrl();
-				PopupWindow.showPopupMessage("God.fxml",
+						.getUrl();
+				PopupWindow.showPopupGod(
 						path.substring(path.lastIndexOf('/')+1
-								     , path.lastIndexOf('.')));
-				
+								,path.lastIndexOf('.'))
+						,true, selectedGodAttackRank);
+
 				return;
 			}
 		}
 		for (BorderPane god : topDivinities) {
 			if (god.equals(node)) {
 				String path = ((ImageView)god.getCenter()).getImage().getUrl();
-				PopupWindow.showPopupMessage("God.fxml",
+				PopupWindow.showPopupGod(
 						path.substring(path.lastIndexOf('/')+1
-								     , path.lastIndexOf('.')));
-				
+								, path.lastIndexOf('.'))
+						, false, selectedGodAttackRank);
+
 				return;
 			}
 		}
 	}
-	
+
 	public void resetHighlightedDice() {
 		for (BorderPane node : mapBottomDice.keySet()) {
 			PseudoClass imageViewBorder = PseudoClass.getPseudoClass("border");
@@ -527,7 +535,7 @@ public class BoardController {
 		translatePos.play();
 	}
 
-	public void update() {
-		//TODO
+	public final Map<String, Byte> getSelectedGodAttackRank() {
+		return selectedGodAttackRank;
 	}
 }

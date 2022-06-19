@@ -99,8 +99,12 @@ public class ValhallaOrlogController {
 		meDiv.add(Utils.getDivinityByName("baldr"));
 		meDiv.add(Utils.getDivinityByName("frigg"));
 		meDiv.add(Utils.getDivinityByName("heimdal"));
+		ArrayList<Divinity> opponentDiv = new ArrayList<>();
+		opponentDiv.add(Utils.getDivinityByName("bragi"));
+		opponentDiv.add(Utils.getDivinityByName("brunehilde"));
+		opponentDiv.add(Utils.getDivinityByName("freyja"));
 		Player me = new Player("SAINT Bernard de La Villardière", meDiv);
-		Player opponent = new Player("Titouan le gueu des prairies", null);
+		Player opponent = new Player("Titouan le gueu des prairies", opponentDiv);
 		gameplayController = new GameplayController(me, opponent, view);
 		loader.setController(gameplayController);
 	}

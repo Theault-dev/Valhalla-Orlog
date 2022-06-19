@@ -8,18 +8,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0"
-	prefWidth="260.0" xmlns="http://javafx.com/javafx/8"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="com.game.orlog.controller.PopupController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="260.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.orlog.controller.PopupController">
 	<children>
-		<ScrollPane fitToWidth="true" maxHeight="-Infinity"
-			maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-			prefHeight="230.0" prefWidth="250.0">
+		<ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="250.0">
 			<content>
-				<VBox fx:id="view" alignment="CENTER" prefHeight="238.0"
-					prefWidth="230.0">
+				<VBox fx:id="view" alignment="CENTER" prefHeight="238.0" prefWidth="230.0">
 					<children>
 						<Label fx:id="godName" text="godName">
 							<font>
@@ -28,8 +21,7 @@
 						</Label>
 						<TextFlow prefHeight="200.0" prefWidth="200.0">
 							<children>
-								<Text fx:id="effect" fill="#bcbcbc" strokeType="OUTSIDE"
-									strokeWidth="0.0" text="effect">
+								<Text fx:id="effect" fill="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="effect">
 									<font>
 										<Font size="18.0" />
 									</font>
@@ -43,14 +35,12 @@
 							<children>
 								<HBox prefHeight="100.0" prefWidth="200.0">
 									<children>
-										<Label fx:id="whenTitle" text="whenTitle"
-											textAlignment="JUSTIFY">
+										<Label fx:id="whenTitle" text="whenTitle" textAlignment="JUSTIFY">
 											<font>
 												<Font size="18.0" />
 											</font>
 										</Label>
-										<Label fx:id="when" alignment="CENTER" text="when"
-											textAlignment="JUSTIFY">
+										<Label fx:id="when" alignment="CENTER" text="when" textAlignment="JUSTIFY">
 											<font>
 												<Font size="18.0" />
 											</font>
@@ -62,8 +52,7 @@
 								</HBox>
 								<HBox prefHeight="100.0" prefWidth="200.0">
 									<children>
-										<Label fx:id="onWhoTitle" text="onWhoTitle"
-											textAlignment="JUSTIFY">
+										<Label fx:id="onWhoTitle" text="onWhoTitle" textAlignment="JUSTIFY">
 											<font>
 												<Font size="18.0" />
 											</font>
@@ -71,8 +60,7 @@
 												<Insets />
 											</HBox.margin>
 										</Label>
-										<Label fx:id="onWho" text="onWho"
-											textAlignment="JUSTIFY">
+										<Label fx:id="onWho" text="onWho" textAlignment="JUSTIFY">
 											<font>
 												<Font size="18.0" />
 											</font>
@@ -84,14 +72,12 @@
 								</HBox>
 								<HBox prefHeight="100.0" prefWidth="200.0">
 									<children>
-										<Label fx:id="affectTitle" prefWidth="100.0"
-											text="affectTitle" textAlignment="JUSTIFY">
+										<Label fx:id="affectTitle" prefWidth="100.0" text="affectTitle" textAlignment="JUSTIFY">
 											<font>
 												<Font size="18.0" />
 											</font>
 										</Label>
-										<Label fx:id="affect1" text="affect1"
-											textAlignment="JUSTIFY">
+										<Label fx:id="affect1" text="affect1" textAlignment="JUSTIFY">
 											<font>
 												<Font size="18.0" />
 											</font>
@@ -103,34 +89,12 @@
 								</HBox>
 								<HBox prefHeight="100.0" prefWidth="200.0">
 									<children>
-										<Label alignment="CENTER" prefWidth="100.0"
-											textAlignment="JUSTIFY">
+										<Label alignment="CENTER" prefWidth="100.0" textAlignment="JUSTIFY">
 											<font>
 												<Font size="18.0" />
 											</font>
 										</Label>
-										<Label fx:id="affect2" alignment="CENTER" text="affect2"
-											textAlignment="JUSTIFY">
-											<font>
-												<Font size="18.0" />
-											</font>
-											<HBox.margin>
-												<Insets left="10.0" />
-											</HBox.margin>
-										</Label>
-									</children>
-								</HBox>
-								<HBox fx:id="offeringBox" prefHeight="100.0"
-									prefWidth="200.0">
-									<children>
-										<Label fx:id="offeringTitle" text="offeringTitle"
-											textAlignment="JUSTIFY">
-											<font>
-												<Font size="18.0" />
-											</font>
-										</Label>
-										<Label fx:id="offering" text="offering"
-											textAlignment="JUSTIFY">
+										<Label fx:id="affect2" alignment="CENTER" text="affect2" textAlignment="JUSTIFY">
 											<font>
 												<Font size="18.0" />
 											</font>
@@ -140,11 +104,26 @@
 										</Label>
 									</children>
 								</HBox>
-								<VBox fx:id="multiplierBox" prefHeight="200.0"
-									prefWidth="100.0">
+								<HBox fx:id="offeringBox" prefHeight="100.0" prefWidth="200.0">
 									<children>
-										<Label fx:id="multiplierTitle" text="multiplierTitle"
-											textAlignment="JUSTIFY">
+										<Label fx:id="offeringTitle" text="offeringTitle" textAlignment="JUSTIFY">
+											<font>
+												<Font size="18.0" />
+											</font>
+										</Label>
+										<Label fx:id="offering" text="offering" textAlignment="JUSTIFY">
+											<font>
+												<Font size="18.0" />
+											</font>
+											<HBox.margin>
+												<Insets left="10.0" />
+											</HBox.margin>
+										</Label>
+									</children>
+								</HBox>
+								<VBox fx:id="multiplierBox" prefHeight="200.0" prefWidth="100.0">
+									<children>
+										<Label fx:id="multiplierTitle" text="multiplierTitle" textAlignment="JUSTIFY">
 											<font>
 												<Font size="18.0" />
 											</font>
@@ -153,14 +132,12 @@
 											<children>
 												<HBox prefHeight="100.0" prefWidth="200.0">
 													<children>
-														<Label fx:id="onWhoMultTitle" text="onWhoMultTitle"
-															textAlignment="JUSTIFY">
+														<Label fx:id="onWhoMultTitle" text="onWhoMultTitle" textAlignment="JUSTIFY">
 															<font>
 																<Font size="18.0" />
 															</font>
 														</Label>
-														<Label fx:id="onWhoMult" text="onWhoMult"
-															textAlignment="JUSTIFY">
+														<Label fx:id="onWhoMult" text="onWhoMult" textAlignment="JUSTIFY">
 															<font>
 																<Font size="18.0" />
 															</font>
@@ -172,8 +149,7 @@
 												</HBox>
 												<HBox prefHeight="100.0" prefWidth="200.0">
 													<children>
-														<Label fx:id="onWhatMultTitle"
-															text="onWhatMultTitle" textAlignment="JUSTIFY">
+														<Label fx:id="onWhatMultTitle" text="onWhatMultTitle" textAlignment="JUSTIFY">
 															<font>
 																<Font size="18.0" />
 															</font>
@@ -181,8 +157,7 @@
 																<Insets />
 															</HBox.margin>
 														</Label>
-														<Label fx:id="onWhatMult" text="onWhatMult"
-															textAlignment="JUSTIFY">
+														<Label fx:id="onWhatMult" text="onWhatMult" textAlignment="JUSTIFY">
 															<font>
 																<Font size="18.0" />
 															</font>
@@ -203,78 +178,66 @@
 						</VBox>
 						<VBox alignment="CENTER" prefHeight="61.0" prefWidth="230.0">
 							<children>
-								<HBox prefHeight="29.0" prefWidth="230.0">
-									<children>
-										<Label fx:id="costName1" prefHeight="21.0"
-											prefWidth="116.0" text="costName">
-											<HBox.margin>
-												<Insets left="5.0" />
-											</HBox.margin>
-										</Label>
-										<Label fx:id="costPrice1" prefHeight="21.0"
-											prefWidth="70.0" text="costPrice1">
-											<HBox.margin>
-												<Insets right="5.0" />
-											</HBox.margin>
-										</Label>
-										<Label fx:id="valueName1" prefHeight="21.0"
-											prefWidth="116.0" text="valueName" />
-										<Label fx:id="value1" prefHeight="21.0" prefWidth="70.0"
-											text="value1" />
-									</children>
-									<VBox.margin>
-										<Insets bottom="10.0" left="10.0" right="10.0"
-											top="10.0" />
-									</VBox.margin>
-								</HBox>
-								<HBox prefHeight="29.0" prefWidth="230.0">
-									<children>
-										<Label fx:id="costName2" prefHeight="21.0"
-											prefWidth="116.0" text="costName">
-											<HBox.margin>
-												<Insets left="5.0" />
-											</HBox.margin>
-										</Label>
-										<Label fx:id="costPrice2" prefHeight="21.0"
-											prefWidth="70.0" text="costPrice2">
-											<HBox.margin>
-												<Insets right="5.0" />
-											</HBox.margin>
-										</Label>
-										<Label fx:id="valueName2" prefHeight="21.0"
-											prefWidth="116.0" text="valueName" />
-										<Label fx:id="value2" prefHeight="21.0" prefWidth="70.0"
-											text="value2" />
-									</children>
-									<VBox.margin>
-										<Insets bottom="10.0" left="10.0" right="10.0"
-											top="10.0" />
-									</VBox.margin>
-								</HBox>
-								<HBox prefHeight="29.0" prefWidth="230.0">
-									<children>
-										<Label fx:id="costName3" prefHeight="21.0"
-											prefWidth="116.0" text="costName">
-											<HBox.margin>
-												<Insets left="5.0" />
-											</HBox.margin>
-										</Label>
-										<Label fx:id="costPrice3" prefHeight="21.0"
-											prefWidth="70.0" text="costPrice2">
-											<HBox.margin>
-												<Insets right="5.0" />
-											</HBox.margin>
-										</Label>
-										<Label fx:id="valueName3" prefHeight="21.0"
-											prefWidth="116.0" text="valueName" />
-										<Label fx:id="value3" prefHeight="21.0" prefWidth="70.0"
-											text="value3" />
-									</children>
-									<VBox.margin>
-										<Insets bottom="10.0" left="10.0" right="10.0"
-											top="10.0" />
-									</VBox.margin>
-								</HBox>
+                        <BorderPane fx:id="effectRank1" prefHeight="200.0" prefWidth="200.0">
+                           <center>
+      								<HBox prefHeight="29.0" prefWidth="230.0" BorderPane.alignment="CENTER">
+      									<children>
+      										<Label fx:id="costName1" prefHeight="21.0" prefWidth="116.0" text="costName">
+      											<HBox.margin>
+      												<Insets left="5.0" />
+      											</HBox.margin>
+      										</Label>
+      										<Label fx:id="costPrice1" prefHeight="21.0" prefWidth="70.0" text="costPrice1">
+      											<HBox.margin>
+      												<Insets right="5.0" />
+      											</HBox.margin>
+      										</Label>
+      										<Label fx:id="valueName1" prefHeight="21.0" prefWidth="116.0" text="valueName" />
+      										<Label fx:id="value1" prefHeight="21.0" prefWidth="70.0" text="value1" />
+      									</children>
+      								</HBox>
+                           </center>
+                        </BorderPane>
+                        <BorderPane fx:id="effectRank2" prefHeight="200.0" prefWidth="200.0">
+                           <center>
+      								<HBox prefHeight="29.0" prefWidth="230.0" BorderPane.alignment="CENTER">
+      									<children>
+      										<Label fx:id="costName2" prefHeight="21.0" prefWidth="116.0" text="costName">
+      											<HBox.margin>
+      												<Insets left="5.0" />
+      											</HBox.margin>
+      										</Label>
+      										<Label fx:id="costPrice2" prefHeight="21.0" prefWidth="70.0" text="costPrice2">
+      											<HBox.margin>
+      												<Insets right="5.0" />
+      											</HBox.margin>
+      										</Label>
+      										<Label fx:id="valueName2" prefHeight="21.0" prefWidth="116.0" text="valueName" />
+      										<Label fx:id="value2" prefHeight="21.0" prefWidth="70.0" text="value2" />
+      									</children>
+      								</HBox>
+                           </center>
+                        </BorderPane>
+                        <BorderPane fx:id="effectRank3" prefHeight="200.0" prefWidth="200.0">
+                           <center>
+      								<HBox prefHeight="29.0" prefWidth="230.0" BorderPane.alignment="CENTER">
+      									<children>
+      										<Label fx:id="costName3" prefHeight="21.0" prefWidth="116.0" text="costName">
+      											<HBox.margin>
+      												<Insets left="5.0" />
+      											</HBox.margin>
+      										</Label>
+      										<Label fx:id="costPrice3" prefHeight="21.0" prefWidth="70.0" text="costPrice2">
+      											<HBox.margin>
+      												<Insets right="5.0" />
+      											</HBox.margin>
+      										</Label>
+      										<Label fx:id="valueName3" prefHeight="21.0" prefWidth="116.0" text="valueName" />
+      										<Label fx:id="value3" prefHeight="21.0" prefWidth="70.0" text="value3" />
+      									</children>
+      								</HBox>
+                           </center>
+                        </BorderPane>
 							</children>
 							<opaqueInsets>
 								<Insets />
