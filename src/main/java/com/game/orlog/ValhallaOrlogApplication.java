@@ -8,7 +8,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
+/**
+ * Main class where the game is launched
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public class ValhallaOrlogApplication extends Application {
 	private static Stage stage;
 	

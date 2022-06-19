@@ -32,6 +32,12 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
+/**
+ * Class controlling the Board with all the interactions
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public class BoardController {
 	private Board board;
 

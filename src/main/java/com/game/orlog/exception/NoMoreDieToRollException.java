@@ -1,10 +1,12 @@
 package com.game.orlog.exception;
 
+/**
+ * Exception occurred when all the dice has been rolled.
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public class NoMoreDieToRollException extends Exception {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public NoMoreDieToRollException() {

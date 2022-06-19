@@ -1,5 +1,11 @@
 package com.game.orlog.model.enumClass;
 
+/**
+ * Enumeration of possible state of a turn
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public enum GamePhaseEnum implements GeneralEnum {
 	IDLE(""), ROLL(""), DICE_SELECTION(""), FAVORS_SELECTION(""),
 	RESOLVE(""), DIVINE_FAVOR("faveur_divine"), FIGHT("avant_resolution"),

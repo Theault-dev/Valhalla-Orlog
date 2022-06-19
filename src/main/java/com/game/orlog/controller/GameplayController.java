@@ -13,6 +13,12 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
+/**
+ * Class Controlling the game play and interacting with the board controller
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public class GameplayController {
 	private final static byte SPEED = 1;
 	private byte turnNumber;

@@ -7,6 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Controller of the HomePage.FXML
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public class HomePageController {
 	@FXML
 	private Button newGame;

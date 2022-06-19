@@ -20,6 +20,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
+/**
+ * Controller of the Valhalla Application.
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public class ValhallaOrlogController {
 	private Scene scene;
 	

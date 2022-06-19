@@ -1,6 +1,13 @@
 package com.game.orlog.exception;
 
+/**
+ * Exception for a die.
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public class DieException extends Exception {
+	private static final long serialVersionUID = 1L;
 
 	public DieException() {
 		// TODO Auto-generated constructor stub

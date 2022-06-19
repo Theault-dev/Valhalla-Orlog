@@ -1,5 +1,11 @@
 package com.game.orlog.model.enumClass;
 
+/**
+ * Enumeration of possible items' target.
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public enum OnWhatEnum implements GeneralEnum {
 	NONE(""), AXE_DAMAGE("dégâts_hache"), BLOCKING("blocage"), AXE("haches"), POWER_TOKEN("jetons_pouvoir"),
 	ARROW("flèches"), TAKEN_DAMAGE("dégâts_subis"), HAND("main");

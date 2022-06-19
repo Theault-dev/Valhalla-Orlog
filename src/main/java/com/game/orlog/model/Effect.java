@@ -9,6 +9,12 @@ import com.game.orlog.model.enumClass.OfferingEnum;
 import com.game.orlog.model.enumClass.OnWhatEnum;
 import com.game.orlog.model.enumClass.OnWhoEnum;
 
+/**
+ * Model of an Effect for a divinity
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public class Effect {
 	private String name;
 	private String description;

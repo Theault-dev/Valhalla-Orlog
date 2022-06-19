@@ -6,7 +6,13 @@ import com.game.orlog.utils.LocalisationSystem.Language;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 
-public class SettingsController extends PopupController{
+/**
+ * Controller of the Settings.fxml. Use the PopupController class.
+ * 
+ * @author Theault & Titouan
+ *
+ */
+public class SettingsController extends PopupController {
 	@FXML
 	private ComboBox<String> settings_languages_list;
 	

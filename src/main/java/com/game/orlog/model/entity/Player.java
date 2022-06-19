@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import com.game.orlog.model.items.Cup;
 import com.game.orlog.model.items.Die;
 
+/**
+ * Model of a Player
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public class Player {
 	private String name;
 	private byte healthPoint;

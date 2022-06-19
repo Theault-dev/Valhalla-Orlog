@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import com.game.orlog.model.Effect;
 import com.game.orlog.utils.Utils;
 
+/**
+ * Model of a Divinity/God
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public class Divinity {
 	private String name;
 	private Effect effect;

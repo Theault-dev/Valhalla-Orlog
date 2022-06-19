@@ -1,10 +1,12 @@
 package com.game.orlog.exception;
 
+/**
+ * Exception for a Divinity
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public class DivinityException extends Exception {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1;
 
 	public DivinityException() {

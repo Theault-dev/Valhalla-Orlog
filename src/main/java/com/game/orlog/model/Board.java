@@ -2,6 +2,12 @@ package com.game.orlog.model;
 
 import com.game.orlog.model.entity.Player;
 
+/**
+ * Model of a board.
+ * 
+ * @author Theault & Titouan
+ *
+ */
 public class Board {
 	private Player p1;
 	private Player p2;
